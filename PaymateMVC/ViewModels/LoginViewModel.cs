@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace PaymateMVC.Models
+namespace PaymateMVC.ViewModels
 {
     public class LoginViewModel
     {

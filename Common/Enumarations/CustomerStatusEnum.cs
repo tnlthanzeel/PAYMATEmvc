@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Common.Enumarations
 {
-    public enum CustomerStatusEnum
+   public enum CustomerStatusEnum
     {
-        Active=1,
-        Deleted=2,
-        Blocked=3
+        Active = 1,
+        Deleted = 2,
+        Blocked = 3
     }
 }

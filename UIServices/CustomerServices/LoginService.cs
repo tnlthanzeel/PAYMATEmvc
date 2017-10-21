@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using Common;
+
+using Common.Enumarations;
 
 namespace UIServices.CustomerServices
 {

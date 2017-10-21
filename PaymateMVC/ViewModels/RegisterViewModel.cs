@@ -7,8 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using BusinessObjects;
+using Common.Enumarations;
 
-namespace PaymateMVC.Models
+namespace PaymateMVC.ViewModels
 {
     public class RegisterViewModel
     {
@@ -38,9 +39,9 @@ namespace PaymateMVC.Models
         [DataType(DataType.CreditCard)]
         public long? CustomerCardNo { get; set; }
 
-        [Display(Name ="Email Address")]
-        [Required(ErrorMessage ="Please Enter Your Email")]
-        [EmailAddress(ErrorMessage ="Invalid Email Address")]
+        [Display(Name = "Email Address")]
+        [Required(ErrorMessage = "Please Enter Your Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string CustomerEmailAddress { get; set; }
 
 
@@ -52,14 +53,15 @@ namespace PaymateMVC.Models
 
 
 
-        public CustomerBO Mapping (RegisterViewModel registerViewModel)
+        public CustomerBO Mapping(RegisterViewModel registerViewModel)
         {
             Mapper.Initialize(c => c.CreateMap<RegisterViewModel, CustomerBO>());
             var customerBo = Mapper.Map<CustomerBO>(registerViewModel);
+            customerBo.Status = (int)CustomerStatusEnum.Active;
             customerBo.CreatedOn = DateTime.Now;
             return customerBo;
         }
 
-        
+
     }
 }
