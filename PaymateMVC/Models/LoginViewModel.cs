@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using BusinessObjects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,14 +12,21 @@ namespace PaymateMVC.Models
     {
         public int CustomerID { get; set; }
 
-        [Required(ErrorMessage ="Please enter your username")]
-        [Display(Name ="Email Address")]
+        [Required(ErrorMessage = "Please enter your email address")]
+        [Display(Name = "Email Address")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        public string UserName { get; set; }
+        public string CustomerEmailAddress { get; set; }
 
-        [Required(ErrorMessage ="Please enter your password")]
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Please enter your password")]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string CustomerPassword { get; set; }
 
+
+        public CustomerBO Mapping(LoginViewModel loginViewModel)
+        {
+            Mapper.Initialize(c => c.CreateMap<LoginViewModel, CustomerBO>());
+            return Mapper.Map<CustomerBO>(loginViewModel);
+        }
     }
 }

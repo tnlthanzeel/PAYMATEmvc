@@ -432,6 +432,10 @@
       <Project>{807ECBAE-9506-43FB-BF53-727537246C07}</Project>
       <Name>BusinessObjects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{355A6BBF-059D-4DE9-9E81-3777EA53525B}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{D86D943C-D45D-4EC6-9D1A-5C17869DE50E}</Project>
       <Name>DataAccess</Name>

@@ -24,7 +24,7 @@ namespace DataAccess.Models
         public string CustomerPassword { get; set; }
 
         [Required]
-        public long? CustomerCardNo { get; set; }
+        public long CustomerCardNo { get; set; }
 
         [Required]
         public string CustomerEmailAddress { get; set; }
@@ -39,6 +39,8 @@ namespace DataAccess.Models
         public DateTime CreatedOn { get; set; }
 
         public DateTime? EditedOn { get; set; }
+
+        public int Status { get; set; }
 
 
 

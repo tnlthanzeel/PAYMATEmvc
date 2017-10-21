@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects;
+using Common;
 using PaymateMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -42,15 +43,14 @@ namespace PaymateMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
+           var customerBo= loginViewModel.Mapping(loginViewModel);
 
-
-            var isLoginValid = _LoginService.Login(loginViewModel.UserName, loginViewModel.Password);
+            var isLoginValid = _LoginService.Login(customerBo.CustomerEmailAddress, customerBo.CustomerPassword);
             if (isLoginValid != null)
-                return RedirectToAction("MainMenu", "DashBoard");
-
+                return Content(((int)CustomerStatusEnum.Active).ToString()); 
+                //return RedirectToAction("MainMenu", "DashBoard");
             TempData["LoginError"] = "LoginError";
             return View("Login", loginViewModel);
-
         }
 
         [HttpGet]
@@ -59,7 +59,6 @@ namespace PaymateMVC.Controllers
             var registerViewModel = new RegisterViewModel()
             {
                 Gender = _GenderLookupService.GetGender()
-
             };
 
             return View(registerViewModel);

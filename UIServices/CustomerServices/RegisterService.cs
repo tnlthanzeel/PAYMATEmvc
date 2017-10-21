@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects;
+using Common;
 using DataAccess;
 using DataAccess.Models;
 using System;
@@ -25,6 +26,7 @@ namespace UIServices.CustomerServices
         {
             Mapper.Initialize(c => c.CreateMap<CustomerBO, Customer>());
             var customer = Mapper.Map<Customer>(customerBO);
+            customer.Status = (int)CustomerStatusEnum.Active;
             _paymateDB.Customer.Add(customer);
             _paymateDB.SaveChanges();
         }

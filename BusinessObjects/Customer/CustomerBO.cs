@@ -18,10 +18,20 @@ namespace BusinessObjects
 
         public string ConfirmPassword { get; set; }
 
-        public long? CustomerCardNo { get; set; }
+        public long CustomerCardNo { get; set; }
 
         public string CustomerEmailAddress { get; set; }
 
         public int GenderID { get; set; }
+
+        public int Status { get; set; }
+
+        public String CustomerFullName
+        {
+            get
+            {
+                return (CustomerFirstName + " " + CustomerLastName);
+            }
+        }
     }
 }

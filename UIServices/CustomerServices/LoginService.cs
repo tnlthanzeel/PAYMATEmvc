@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-
+using Common;
 
 namespace UIServices.CustomerServices
 {
@@ -24,7 +24,7 @@ namespace UIServices.CustomerServices
         public Customer Login(string CustomerEmail, string Password)
         {
             
-            var customerlogin = _customer.Customer.FirstOrDefault(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password);
+            var customerlogin = _customer.Customer.FirstOrDefault(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status==(int)CustomerStatusEnum.Active);
 
             return customerlogin;
 
