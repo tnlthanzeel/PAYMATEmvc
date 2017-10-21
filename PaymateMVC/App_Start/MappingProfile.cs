@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects;
-using PaymateMVC.Models;
+using PaymateMVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

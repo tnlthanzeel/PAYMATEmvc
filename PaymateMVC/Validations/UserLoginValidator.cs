@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using PaymateMVC.Models;
+using PaymateMVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

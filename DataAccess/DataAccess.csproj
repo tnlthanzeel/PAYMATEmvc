@@ -47,17 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201710161433363_sss.cs" />
-    <Compile Include="Migrations\201710161433363_sss.Designer.cs">
-      <DependentUpon>201710161433363_sss.cs</DependentUpon>
+    <Compile Include="Migrations\201710210840143_addedstatus.cs" />
+    <Compile Include="Migrations\201710210840143_addedstatus.Designer.cs">
+      <DependentUpon>201710210840143_addedstatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710161438082_aa.cs" />
-    <Compile Include="Migrations\201710161438082_aa.Designer.cs">
-      <DependentUpon>201710161438082_aa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710171646518_card_number_set_to_null.cs" />
-    <Compile Include="Migrations\201710171646518_card_number_set_to_null.Designer.cs">
-      <DependentUpon>201710171646518_card_number_set_to_null.cs</DependentUpon>
+    <Compile Include="Migrations\201710210849224_cardnumbernotnullabale.cs" />
+    <Compile Include="Migrations\201710210849224_cardnumbernotnullabale.Designer.cs">
+      <DependentUpon>201710210849224_cardnumbernotnullabale.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -79,14 +75,11 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710161433363_sss.resx">
-      <DependentUpon>201710161433363_sss.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710210840143_addedstatus.resx">
+      <DependentUpon>201710210840143_addedstatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710161438082_aa.resx">
-      <DependentUpon>201710161438082_aa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710171646518_card_number_set_to_null.resx">
-      <DependentUpon>201710171646518_card_number_set_to_null.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710210849224_cardnumbernotnullabale.resx">
+      <DependentUpon>201710210849224_cardnumbernotnullabale.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
