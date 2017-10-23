@@ -4,5 +4,5 @@
     Layout = "~/Views/Shared/_DashBoard.cshtml";
 }
 
-<h2>DashBoard main menu running</h2>
 
+welcome home: @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")

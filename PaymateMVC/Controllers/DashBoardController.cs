@@ -9,9 +9,10 @@ namespace PaymateMVC.Controllers
     public class DashBoardController : Controller
     {
         // GET: DashBoard
+        [Authorize]
         public ActionResult MainMenu()
         {
-            return Content("DashBoard running");
+            return View();
         }
     }
 }
