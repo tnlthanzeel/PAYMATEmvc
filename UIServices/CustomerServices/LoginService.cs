@@ -25,7 +25,7 @@ namespace UIServices.CustomerServices
         public Customer Login(string CustomerEmail, string Password)
         {
             
-            var customerlogin = _customer.Customer.FirstOrDefault(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status==(int)CustomerStatusEnum.Active);
+            var customerlogin = _customer.Customer.AsNoTracking().FirstOrDefault(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status==(int)CustomerStatusEnum.Active);
 
             return customerlogin;
 

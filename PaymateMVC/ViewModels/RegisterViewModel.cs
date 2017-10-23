@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using BusinessObjects;
 using Common.Enumarations;
+using System.Web.Security;
 
 namespace PaymateMVC.ViewModels
 {
@@ -59,6 +60,7 @@ namespace PaymateMVC.ViewModels
             var customerBo = Mapper.Map<CustomerBO>(registerViewModel);
             customerBo.Status = (int)CustomerStatusEnum.Active;
             customerBo.CreatedOn = DateTime.Now;
+            customerBo.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(registerViewModel.CustomerPassword, "SHA1");
             return customerBo;
         }
 

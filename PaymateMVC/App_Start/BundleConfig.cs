@@ -76,6 +76,32 @@ namespace PaymateMVC
 
 
             #endregion
+
+            
+
+            #region Dashboard
+
+            bundles.Add(new StyleBundle("~/Dashboard/css").Include(
+                "~/Assets/vendor/bootstrap/css/bootstrap.min.css",
+                "~/Assets/vendor/font-awesome/css/font-awesome.min.css",
+                "~/Assets/vendor/datatables/dataTables.bootstrap4.css",
+                "~/Assets/css/sb-admin.css"
+                ));
+
+
+            bundles.Add(new ScriptBundle("~/Dashboard/js").Include(
+                "~/Assets/vendor/jquery/jquery.min.js",
+                "~/Assets/vendor/popper/popper.min.js",
+                "~/Assets/vendor/bootstrap/js/bootstrap.min.js",
+                "~/Assets/vendor/jquery-easing/jquery.easing.min.js",
+                "~/Assets/vendor/chart.js/Chart.min.js",
+                "~/Assets/vendor/datatables/jquery.dataTables.js",
+                "~/Assets/vendor/datatables/dataTables.bootstrap4.js",
+                "~/Assets/js/sb-admin.min.js",
+                "~/Assets/js/sb-admin-datatables.min.js",
+                "~/Assets/js/sb-admin-charts.min.js"
+                ));
+            #endregion
         }
     }
 }

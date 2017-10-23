@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace PaymateMVC.ViewModels
 {
@@ -26,6 +27,7 @@ namespace PaymateMVC.ViewModels
         public CustomerBO Mapping(LoginViewModel loginViewModel)
         {
             Mapper.Initialize(c => c.CreateMap<LoginViewModel, CustomerBO>());
+            loginViewModel.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(loginViewModel.CustomerPassword,"SHA1");
             return Mapper.Map<CustomerBO>(loginViewModel);
         }
     }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects;
-using Common;
+using System.Web.Security;
 using PaymateMVC.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,11 +9,12 @@ using System.Web;
 using System.Web.Mvc;
 using UIServices.CustomerServices;
 using UIServices.LookupServices;
+using System.Security.Policy;
 
 namespace PaymateMVC.Controllers
 {
 
-
+    [AllowAnonymous]
     public class SecurityController : Controller
     {
 
@@ -39,17 +40,33 @@ namespace PaymateMVC.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel loginViewModel)
+        public ActionResult Login(LoginViewModel loginViewModel, string ReturnUrl = "")
         {
             var customerBo = loginViewModel.Mapping(loginViewModel);
             var isLoginValid = _LoginService.Login(customerBo.CustomerEmailAddress, customerBo.CustomerPassword);
             if (isLoginValid != null)
-                return RedirectToAction("MainMenu", "DashBoard");
+            {
+                FormsAuthentication.SetAuthCookie(customerBo.CustomerEmailAddress, false);
+                if (Url.IsLocalUrl(ReturnUrl))
+                    return Redirect(ReturnUrl);
+                else
+                    return RedirectToAction("MainMenu", "DashBoard");
+            }
+            ModelState.Remove("CustomerPassword");
             TempData["LoginError"] = "LoginError";
             return View("Login", loginViewModel);
         }
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
 
         [HttpGet]
         public ActionResult Register()
@@ -69,10 +86,7 @@ namespace PaymateMVC.Controllers
         {
             var customerBo = registerViewModel.Mapping(registerViewModel);
             _RegisterService.RegisterCustomer(customerBo);
-            return Content("oki");
+            return RedirectToAction("MainMenu", "DashBoard");
         }
     }
-
-
-
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Enumarations
 {
-   public enum CustomerStatusEnum
+    public enum CustomerStatusEnum
     {
         Active = 1,
         Deleted = 2,
