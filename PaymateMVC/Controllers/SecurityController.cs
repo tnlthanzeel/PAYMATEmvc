@@ -64,7 +64,7 @@ namespace PaymateMVC.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Security");
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -86,10 +86,7 @@ namespace PaymateMVC.Controllers
         {
             var customerBo = registerViewModel.Mapping(registerViewModel);
             _RegisterService.RegisterCustomer(customerBo);
-            return Content("oki");
+            return RedirectToAction("MainMenu", "DashBoard");
         }
     }
-
-
-
 }

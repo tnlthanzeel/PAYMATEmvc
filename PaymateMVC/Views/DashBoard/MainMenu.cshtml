@@ -7,7 +7,7 @@
 
 
 <div class="container-fluid">
-    welcome home: @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")
+    welcome : @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">

@@ -21,7 +21,7 @@ namespace UIServices.LookupServices
         public IEnumerable<Gender> GetGender()
         {
 
-            var Genders = _GenderLookup.Gender.ToList();
+            var Genders = _GenderLookup.Gender.AsNoTracking().ToList();
             return Genders;
 
         }
