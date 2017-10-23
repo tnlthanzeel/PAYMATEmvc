@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects
 {
-    public class CustomerBO : CommonBo
+    public class UserBO : CommonBo
     {
         public int CustomerId { get; set; }
         public string CustomerFirstName { get; set; }

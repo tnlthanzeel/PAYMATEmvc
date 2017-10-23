@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 
 using Common.Enumarations;
+using BusinessObjects;
 
 namespace UIServices.CustomerServices
 {
@@ -22,10 +23,14 @@ namespace UIServices.CustomerServices
             _customer = new PaymateDB();
         }
 
-        public Customer Login(string CustomerEmail, string Password)
+        public UserBO Login(string CustomerEmail, string Password)
         {
-            
-            var customerlogin = _customer.Customer.AsNoTracking().FirstOrDefault(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status==(int)CustomerStatusEnum.Active);
+
+            var customerlogin = _customer.Customer.AsNoTracking().Where(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status == (int)CustomerStatusEnum.Active)
+                .Select(s => new UserBO()
+                {
+                    CustomerEmailAddress = s.CustomerEmailAddress
+                }).FirstOrDefault();
 
             return customerlogin;
 

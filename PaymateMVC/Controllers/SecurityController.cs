@@ -45,11 +45,11 @@ namespace PaymateMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel, string ReturnUrl = "")
         {
-            var customerBo = loginViewModel.Mapping(loginViewModel);
-            var isLoginValid = _LoginService.Login(customerBo.CustomerEmailAddress, customerBo.CustomerPassword);
-            if (isLoginValid != null)
+            var userBO = loginViewModel.Mapping(loginViewModel);
+            userBO = _LoginService.Login(userBO.CustomerEmailAddress, userBO.CustomerPassword);
+            if (userBO != null)
             {
-                FormsAuthentication.SetAuthCookie(customerBo.CustomerEmailAddress, false);
+                FormsAuthentication.SetAuthCookie(userBO.CustomerEmailAddress, false);
                 if (Url.IsLocalUrl(ReturnUrl))
                     return Redirect(ReturnUrl);
                 else
@@ -75,7 +75,6 @@ namespace PaymateMVC.Controllers
             {
                 Gender = _GenderLookupService.GetGender()
             };
-
             return View(registerViewModel);
         }
 

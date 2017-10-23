@@ -24,11 +24,11 @@ namespace PaymateMVC.ViewModels
         public string CustomerPassword { get; set; }
 
 
-        public CustomerBO Mapping(LoginViewModel loginViewModel)
+        public UserBO Mapping(LoginViewModel loginViewModel)
         {
-            Mapper.Initialize(c => c.CreateMap<LoginViewModel, CustomerBO>());
+            Mapper.Initialize(c => c.CreateMap<LoginViewModel, UserBO>());
             loginViewModel.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(loginViewModel.CustomerPassword,"SHA1");
-            return Mapper.Map<CustomerBO>(loginViewModel);
+            return Mapper.Map<UserBO>(loginViewModel);
         }
     }
 }

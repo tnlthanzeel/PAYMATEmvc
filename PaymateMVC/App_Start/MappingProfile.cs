@@ -12,7 +12,7 @@ namespace PaymateMVC.App_Start
     {
         public MappingProfile()
         {
-            CreateMap<RegisterViewModel, CustomerBO>();
+            CreateMap<RegisterViewModel, UserBO>();
         }
     }
 }

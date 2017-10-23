@@ -22,9 +22,9 @@ namespace UIServices.CustomerServices
 
 
 
-        public void RegisterCustomer(CustomerBO customerBO)
+        public void RegisterCustomer(UserBO customerBO)
         {
-            Mapper.Initialize(c => c.CreateMap<CustomerBO, Customer>());
+            Mapper.Initialize(c => c.CreateMap<UserBO, Customer>());
             var customer = Mapper.Map<Customer>(customerBO);
             _paymateDB.Customer.Add(customer);
             _paymateDB.SaveChanges();

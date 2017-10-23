@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer\CommonBo.cs" />
-    <Compile Include="Customer\CustomerBO.cs" />
+    <Compile Include="Customer\UserBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
