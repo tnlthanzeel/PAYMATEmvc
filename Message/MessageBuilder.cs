@@ -17,13 +17,14 @@ namespace Message
     {
         private static readonly string EncryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        public static void SendEmail(string EmailAddress)
+        public static void SendEmail(string EmailAddress,string CustomerFirstName, string CustomerLastName)
         {
             var EncryptedEmail = EncryptEmail(EmailAddress);
-            MailMessage mailMessage = new MailMessage("paymatelk@outlook.com", EmailAddress)
+            MailMessage mailMessage = new MailMessage("d015240@student.nibm.lk", EmailAddress)
             {
                 Subject = "PAYmate Confirmation mail",
-                Body = "Hai\n\n Click on the link below to confirm your email address.\n\n" + "http://localhost:54283/Security/Confirmation?id=" + EncryptedEmail
+                //Body = "Hai "+CustomerLastName+" Click on the link below to confirm your email address.\n\n" + "http://localhost:54283/Security/Confirmation?id=" + EncryptedEmail
+                Body = "Hai "+ CustomerFirstName+" "+CustomerLastName+" \n\n Click on the link below to confirm your email address.\n\n" + "http://paymatelk.azurewebsites.net/Security/Confirmation?id=" + EncryptedEmail
             };
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Send(mailMessage);
@@ -52,7 +53,7 @@ namespace Message
 
         public static string Decrypt(string id)
         {
-            //id = id.Replace(" ", "+");
+            id = id.Replace(" ", "+");
             int mod4 = id.Length % 4;
             if (mod4 > 0)
             {
