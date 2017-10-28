@@ -15,6 +15,8 @@ namespace Message
 {
     public class MessageBuilder
     {
+        private static readonly string EncryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
         public static void SendEmail(string EmailAddress)
         {
             var EncryptedEmail = EncryptEmail(EmailAddress);
@@ -27,10 +29,8 @@ namespace Message
             smtpClient.Send(mailMessage);
         }
 
-
         private static string EncryptEmail(string Email)
         {
-            string EncryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             byte[] clearBytes = Encoding.Unicode.GetBytes(Email);
             using (Aes encryptor = Aes.Create())
             {
@@ -52,15 +52,12 @@ namespace Message
 
         public static string Decrypt(string id)
         {
-            string EncryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             //id = id.Replace(" ", "+");
-
             int mod4 = id.Length % 4;
             if (mod4 > 0)
             {
                 id += new string('=', 4 - mod4);
             }
-
             byte[] cipherBytes = Convert.FromBase64String(id);
             using (Aes encryptor = Aes.Create())
             {
