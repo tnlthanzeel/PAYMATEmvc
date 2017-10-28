@@ -35,25 +35,29 @@ namespace PaymateMVC.Controllers
 
         //  GET: Security
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string ReturnUrl)
         {
+            ViewBag.returnURL = ReturnUrl;
             return View();
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel loginViewModel, string ReturnUrl = "")
+        public ActionResult Login(LoginViewModel loginViewModel, string ReturnUrl)
         {
+
             var userBO = loginViewModel.Mapping(loginViewModel);
             userBO = _LoginService.Login(userBO.CustomerEmailAddress, userBO.CustomerPassword);
             if (userBO != null)
             {
                 FormsAuthentication.SetAuthCookie(userBO.CustomerEmailAddress, false);
+                FormsAuthentication.RedirectFromLoginPage(loginViewModel.CustomerEmailAddress, false);
+
                 if (Url.IsLocalUrl(ReturnUrl))
                     return Redirect(ReturnUrl);
                 else
-                    return RedirectToAction("MainMenu", "DashBoard");
+                  return RedirectToAction("MainMenu", "DashBoard");
             }
             ModelState.Remove("CustomerPassword");
             TempData["LoginError"] = "LoginError";

@@ -4,13 +4,10 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
-
-
 <div class="container">
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register an Account</div>
         <div class="card-body">
-
             @using (Html.BeginForm("Register", "Security", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
@@ -56,9 +53,7 @@
                     @Html.LabelFor(x => x.CustomerCardNo)
                     @Html.TextBoxFor(x => x.CustomerCardNo, new { @class = "form-control", placeholder = "0123456789" })
                     @Html.ValidationMessageFor(x => x.CustomerCardNo, null, new { @class = "text-danger" })
-                    
                 </div>
-
                 <input type="submit" value="Register" class="btn btn-primary btn-block">
             }
             <div class="text-center">

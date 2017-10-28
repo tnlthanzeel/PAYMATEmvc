@@ -4,10 +4,10 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
-@using (Html.BeginForm("Login", "Security", FormMethod.Post))
+@using (Html.BeginForm("Login", "Security", new { ReturnUrl = ViewBag.returnURL }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="container" >
+    <div class="container">
         <div class="card card-login mx-auto mt-5">
             <div class="card-header">Login</div>
             <div class="card-body">
@@ -31,7 +31,7 @@
                 </div>
                 <input type="submit" name="Login" value="Login" class="btn btn-primary btn-block" />
                 <div class="text-center">
-                    @Html.ActionLink("Register an Account","Register","Security",null,null)
+                    @Html.ActionLink("Register an Account", "Register", "Security", null, null)
                     <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
                 </div>
             </div>
