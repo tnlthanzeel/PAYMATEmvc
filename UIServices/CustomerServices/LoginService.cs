@@ -26,13 +26,14 @@ namespace UIServices.CustomerServices
         public UserBO Login(string CustomerEmail, string Password)
         {
 
-            var customerlogin = _customer.Customer.AsNoTracking().Where(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status == (int)CustomerStatusEnum.Active)
+            var UserBO = _customer.Customer.AsNoTracking().Where(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == true)
                 .Select(s => new UserBO()
                 {
-                    CustomerEmailAddress = s.CustomerEmailAddress
+                    CustomerEmailAddress = s.CustomerEmailAddress,
+                    EmailConfirmed = s.EmailConfirmed
                 }).FirstOrDefault();
 
-            return customerlogin;
+            return UserBO;
 
 
         }

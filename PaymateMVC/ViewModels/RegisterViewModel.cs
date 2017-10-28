@@ -57,11 +57,12 @@ namespace PaymateMVC.ViewModels
         public UserBO Mapping(RegisterViewModel registerViewModel)
         {
             Mapper.Initialize(c => c.CreateMap<RegisterViewModel, UserBO>());
-            var customerBo = Mapper.Map<UserBO>(registerViewModel);
-            customerBo.Status = (int)CustomerStatusEnum.Active;
-            customerBo.CreatedOn = DateTime.Now;
-            customerBo.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(registerViewModel.CustomerPassword, "SHA1");
-            return customerBo;
+            var UserBO = Mapper.Map<UserBO>(registerViewModel);
+            UserBO.Status = (int)CustomerStatusEnum.Active;
+            UserBO.CreatedOn = DateTime.Now;
+            UserBO.EmailConfirmed = false;
+            UserBO.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(registerViewModel.CustomerPassword, "SHA1");
+            return UserBO;
         }
 
 

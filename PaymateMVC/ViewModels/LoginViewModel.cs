@@ -23,6 +23,8 @@ namespace PaymateMVC.ViewModels
         [DataType(DataType.Password)]
         public string CustomerPassword { get; set; }
 
+        public bool EmailConfirmed { get; set; }
+
 
         public UserBO Mapping(LoginViewModel loginViewModel)
         {

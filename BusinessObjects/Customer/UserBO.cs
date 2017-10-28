@@ -26,6 +26,8 @@ namespace BusinessObjects
 
         public int Status { get; set; }
 
+        public bool EmailConfirmed { get; set; }
+
         public String CustomerFullName
         {
             get

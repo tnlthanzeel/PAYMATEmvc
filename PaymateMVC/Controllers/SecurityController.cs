@@ -87,8 +87,8 @@ namespace PaymateMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel registerViewModel)
         {
-            var customerBo = registerViewModel.Mapping(registerViewModel);
-            _RegisterService.RegisterCustomer(customerBo);
+            var UserBO = registerViewModel.Mapping(registerViewModel);
+            _RegisterService.RegisterCustomer(UserBO);
             return RedirectToAction("MainMenu", "DashBoard");
         }
     }
