@@ -21,7 +21,7 @@ namespace Message
             MailMessage mailMessage = new MailMessage("paymatelk@outlook.com", EmailAddress)
             {
                 Subject = "PAYmate Confirmation mail",
-                Body = "Click this link " + "http://localhost:54283/Security/Confirmation?id=" + EncryptedEmail + " to confirm your email adress.",
+                Body = "Hai\n\n Click on the link below to confirm your email address.\n\n" + "http://localhost:54283/Security/Confirmation?id=" + EncryptedEmail
             };
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Send(mailMessage);
@@ -53,7 +53,14 @@ namespace Message
         public static string Decrypt(string id)
         {
             string EncryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            id = id.Replace(" ", "+");
+            //id = id.Replace(" ", "+");
+
+            int mod4 = id.Length % 4;
+            if (mod4 > 0)
+            {
+                id += new string('=', 4 - mod4);
+            }
+
             byte[] cipherBytes = Convert.FromBase64String(id);
             using (Aes encryptor = Aes.Create())
             {
