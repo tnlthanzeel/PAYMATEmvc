@@ -68,6 +68,10 @@
       <Project>{d86d943c-d45d-4ec6-9d1a-5c17869de50e}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Message\Message.csproj">
+      <Project>{3EB5469B-0C4F-4E1D-896F-415FC24FA4FA}</Project>
+      <Name>Message</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

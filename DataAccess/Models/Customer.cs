@@ -34,7 +34,6 @@ namespace DataAccess.Models
 
         public Gender Gender { get; set; }
 
-
         [Required]
         public DateTime CreatedOn { get; set; }
 
@@ -43,9 +42,5 @@ namespace DataAccess.Models
         public int Status { get; set; }
 
         public bool EmailConfirmed { get; set; }
-
-
-
-
     }
 }

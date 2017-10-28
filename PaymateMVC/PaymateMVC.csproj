@@ -375,6 +375,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\paymatelk - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -416,11 +417,11 @@
     <Content Include="Views\Shared\_DashBoard.cshtml" />
     <Content Include="Views\DashBoard\MainMenu.cshtml" />
     <Content Include="Views\Security\Register.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Mappers\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -439,6 +440,10 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{D86D943C-D45D-4EC6-9D1A-5C17869DE50E}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Message\Message.csproj">
+      <Project>{3eb5469b-0c4f-4e1d-896f-415fc24fa4fa}</Project>
+      <Name>Message</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIServices\UIServices.csproj">
       <Project>{7ee7e2a6-d13a-46c5-a54f-9cb7c16246f8}</Project>

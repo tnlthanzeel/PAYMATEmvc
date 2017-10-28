@@ -10,6 +10,9 @@ using System.Web.Mvc;
 using UIServices.CustomerServices;
 using UIServices.LookupServices;
 using System.Security.Policy;
+using Message;
+
+
 
 namespace PaymateMVC.Controllers
 {
@@ -57,7 +60,7 @@ namespace PaymateMVC.Controllers
                 if (Url.IsLocalUrl(ReturnUrl))
                     return Redirect(ReturnUrl);
                 else
-                  return RedirectToAction("MainMenu", "DashBoard");
+                    return RedirectToAction("MainMenu", "DashBoard");
             }
             ModelState.Remove("CustomerPassword");
             TempData["LoginError"] = "LoginError";
@@ -89,6 +92,14 @@ namespace PaymateMVC.Controllers
         {
             var UserBO = registerViewModel.Mapping(registerViewModel);
             _RegisterService.RegisterCustomer(UserBO);
+            MessageBuilder.SendEmail(UserBO.CustomerEmailAddress);
+            return Redirect("Login");
+        }
+
+
+        public ActionResult Confirmation(string id)
+        {
+            _RegisterService.ConfirmEmail(id);
             return RedirectToAction("MainMenu", "DashBoard");
         }
     }
