@@ -33,7 +33,6 @@ namespace PaymateMVC.Controllers
             _RegisterService = new RegisterService();
             _GenderLookupService = new GenderLookupService();
             //_mapper = mapper;
-
         }
 
         //  GET: Security
@@ -44,14 +43,12 @@ namespace PaymateMVC.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel, string ReturnUrl)
         {
-
             var userBO = loginViewModel.Mapping(loginViewModel);
-            userBO = _LoginService.Login(userBO.CustomerEmailAddress, userBO.CustomerPassword);
+            userBO = _LoginService.GetUser(userBO.CustomerEmailAddress, userBO.CustomerPassword);
             if (userBO != null)
             {
                 FormsAuthentication.SetAuthCookie(userBO.CustomerEmailAddress, false);
@@ -90,20 +87,32 @@ namespace PaymateMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel registerViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
                 var UserBO = registerViewModel.Mapping(registerViewModel);
                 _RegisterService.RegisterCustomer(UserBO);
-                MessageBuilder.SendEmail(UserBO.CustomerEmailAddress,UserBO.CustomerFirstName, UserBO.CustomerLastName);
+
+                MessageBuilder messageBuilder = new MessageBuilder()
+                {
+                    To = UserBO.CustomerEmailAddress,
+                    Subject = "PAYmate Confirmation Email",
+                    //Body = "Hai " + CustomerFullName + " Click on the link below to confirm your email address.\n\n" + "http://localhost:54283/Security/Confirmation?id=" + EncryptedEmail
+                    Body = "Hi " + UserBO.CustomerFullName + ",\nClick on the link below to confirm your email address.\n\n" + "http://paymatelk.azurewebsites.net/Security/Confirmation?id=",
+                    IsNewCustomer = true
+                };
+                MessageBuilder.SendEmail(messageBuilder);
                 return Redirect("Login");
             }
-
-            catch(Exception ex)
-            {
-                return Content(ex.ToString());
-            }
+            else
+                return Content("Error Occcured While Processing Your Request");
         }
 
+        [HttpPost]
+        public JsonResult DoesUserEmailExist(string CustomerEmailAddress)
+        {
+            var doesUserExist = _RegisterService.GetUserEmail(CustomerEmailAddress);
+            return Json(!doesUserExist);
+        }
 
         public ActionResult Confirmation(string id)
         {

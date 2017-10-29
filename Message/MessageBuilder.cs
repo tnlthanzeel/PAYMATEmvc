@@ -16,23 +16,46 @@ namespace Message
     public class MessageBuilder
     {
         private static readonly string EncryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private static MailMessage mailMessage;
+        private static SmtpClient smtpClient;
 
-        public static void SendEmail(string EmailAddress,string CustomerFirstName, string CustomerLastName)
+        public MessageBuilder()
         {
-            var EncryptedEmail = EncryptEmail(EmailAddress);
-            MailMessage mailMessage = new MailMessage("d015240@student.nibm.lk", EmailAddress)
+            smtpClient = new SmtpClient();
+        }
+
+        public string Subject { get; set; }
+
+        public string Body { get; set; }
+
+        public string From { get; set; }
+
+        public string To { get; set; }
+        public List<string> ToMany { get; set; }
+
+        public bool IsNewCustomer { get; set; }
+
+
+
+        public static void SendEmail(MessageBuilder messageBuilder)
+        {
+            messageBuilder.Body += messageBuilder.IsNewCustomer == true ? EncryptEmail(messageBuilder.To) : string.Empty;
+            mailMessage = new MailMessage("d015240@student.nibm.lk", messageBuilder.To)
             {
-                Subject = "PAYmate Confirmation mail",
-                //Body = "Hai "+CustomerLastName+" Click on the link below to confirm your email address.\n\n" + "http://localhost:54283/Security/Confirmation?id=" + EncryptedEmail
-                Body = "Hai "+ CustomerFirstName+" "+CustomerLastName+" \n\n Click on the link below to confirm your email address.\n\n" + "http://paymatelk.azurewebsites.net/Security/Confirmation?id=" + EncryptedEmail
+                Subject = messageBuilder.Subject,
+                Body = messageBuilder.Body
             };
-            SmtpClient smtpClient = new SmtpClient();
             smtpClient.Send(mailMessage);
         }
 
-        private static string EncryptEmail(string Email)
+        public static void SendEmails(MessageBuilder messageBuilder)
         {
-            byte[] clearBytes = Encoding.Unicode.GetBytes(Email);
+            
+        }
+
+        private static string EncryptEmail(string EmailTo)
+        {
+            byte[] clearBytes = Encoding.Unicode.GetBytes(EmailTo);
             using (Aes encryptor = Aes.Create())
             {
                 Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
@@ -40,15 +63,15 @@ namespace Message
                 encryptor.IV = pdb.GetBytes(16);
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    using (CryptoStream cryptoStream = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
                     {
-                        cs.Write(clearBytes, 0, clearBytes.Length);
-                        cs.Close();
+                        cryptoStream.Write(clearBytes, 0, clearBytes.Length);
+                        cryptoStream.Close();
                     }
-                    Email = Convert.ToBase64String(ms.ToArray());
+                    EmailTo = Convert.ToBase64String(ms.ToArray());
                 }
             }
-            return Email;
+            return EmailTo;
         }
 
         public static string Decrypt(string id)
@@ -67,10 +90,10 @@ namespace Message
                 encryptor.IV = pdb.GetBytes(16);
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    using (CryptoStream cryptoStream = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
                     {
-                        cs.Write(cipherBytes, 0, cipherBytes.Length);
-                        cs.Close();
+                        cryptoStream.Write(cipherBytes, 0, cipherBytes.Length);
+                        cryptoStream.Close();
                     }
                     id = Encoding.Unicode.GetString(ms.ToArray());
                 }

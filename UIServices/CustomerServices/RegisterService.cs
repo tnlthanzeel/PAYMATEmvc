@@ -24,7 +24,6 @@ namespace UIServices.CustomerServices
             _paymateDB = new PaymateDB();
         }
 
-
         public void RegisterCustomer(UserBO customerBO)
         {
             Mapper.Initialize(c => c.CreateMap<UserBO, Customer>());
@@ -35,10 +34,23 @@ namespace UIServices.CustomerServices
 
         public void ConfirmEmail(string id)
         {
-            var DecryptedEmail = MessageBuilder.Decrypt(id);
-            var EmailConfirmed = _paymateDB.Customer.Single(w => w.CustomerEmailAddress == DecryptedEmail && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == false);
-            EmailConfirmed.EmailConfirmed = true;
-            _paymateDB.SaveChanges();
+            try
+            {
+                var DecryptedEmail = MessageBuilder.Decrypt(id);
+                var EmailConfirmed = _paymateDB.Customer.Single(w => w.CustomerEmailAddress == DecryptedEmail && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == false);
+                EmailConfirmed.EmailConfirmed = true;
+                _paymateDB.SaveChanges();
+            }
+            catch
+            {
+                
+            }
+        }
+
+        public bool GetUserEmail(string NewUserEmailAddress)
+        {
+            var userEamailExist = _paymateDB.Customer.AsNoTracking().Any(w => w.CustomerEmailAddress == NewUserEmailAddress);
+            return userEamailExist;
         }
     }
 }

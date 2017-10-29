@@ -28,7 +28,7 @@ namespace BusinessObjects
 
         public bool EmailConfirmed { get; set; }
 
-        public String CustomerFullName
+        public string CustomerFullName
         {
             get
             {

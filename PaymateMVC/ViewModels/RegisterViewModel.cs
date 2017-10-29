@@ -34,7 +34,6 @@ namespace PaymateMVC.ViewModels
         [System.ComponentModel.DataAnnotations.Compare("CustomerPassword", ErrorMessage = "Passwords Does Not Match")]
         public string ConfirmPassword { get; set; }
 
-
         [Display(Name = "Card Number")]
         [Required(ErrorMessage = "Please enter your Card Number")]
         [DataType(DataType.CreditCard)]
@@ -43,16 +42,14 @@ namespace PaymateMVC.ViewModels
         [Display(Name = "Email Address")]
         [Required(ErrorMessage = "Please Enter Your Email")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [Remote("DoesUserEmailExist", "Security", HttpMethod = "POST", ErrorMessage = "This Email Address is already taken.")]
         public string CustomerEmailAddress { get; set; }
-
 
         public IEnumerable<Gender> Gender { get; set; }
 
         [Display(Name = "Gender")]
         [Required(ErrorMessage = "Please Select Your Gender")]
         public int GenderID { get; set; }
-
-
 
         public UserBO Mapping(RegisterViewModel registerViewModel)
         {
@@ -64,7 +61,5 @@ namespace PaymateMVC.ViewModels
             UserBO.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(registerViewModel.CustomerPassword, "SHA1");
             return UserBO;
         }
-
-
     }
 }
