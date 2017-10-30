@@ -35,8 +35,6 @@ namespace Message
 
         public bool IsNewCustomer { get; set; }
 
-
-
         public static void SendEmail(MessageBuilder messageBuilder)
         {
             messageBuilder.Body += messageBuilder.IsNewCustomer == true ? EncryptEmail(messageBuilder.To) : string.Empty;

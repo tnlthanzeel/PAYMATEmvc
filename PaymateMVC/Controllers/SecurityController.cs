@@ -16,16 +16,13 @@ using Message;
 
 namespace PaymateMVC.Controllers
 {
-
     [AllowAnonymous]
     public class SecurityController : Controller
     {
-
         private readonly LoginService _LoginService;
         private readonly GenderLookupService _GenderLookupService;
         private readonly RegisterService _RegisterService;
         //private readonly IMapper _mapper;
-
 
         public SecurityController(/*IMapper mapper*/)
         {
@@ -71,7 +68,6 @@ namespace PaymateMVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
         [HttpGet]
         public ActionResult Register()
         {
@@ -81,7 +77,6 @@ namespace PaymateMVC.Controllers
             };
             return View(registerViewModel);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -101,7 +96,8 @@ namespace PaymateMVC.Controllers
                     IsNewCustomer = true
                 };
                 MessageBuilder.SendEmail(messageBuilder);
-                return Redirect("Login");
+                ViewBag.ModelIsValid = true;
+                return PartialView("_ConfirmEmail",ViewBag.UserFullName=UserBO.CustomerFullName);
             }
             else
                 return Content("Error Occcured While Processing Your Request");
