@@ -115,5 +115,5 @@ namespace PaymateMVC.Controllers
             _RegisterService.ConfirmEmail(id);
             return RedirectToAction("MainMenu", "DashBoard");
         }
-    }
+ }
 }
