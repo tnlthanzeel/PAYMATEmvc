@@ -90,7 +90,6 @@ namespace PaymateMVC.Controllers
                 {
                     To = UserBO.CustomerEmailAddress,
                     Subject = "PAYmate Confirmation Email",
-                    //Body = "Hai " + CustomerFullName + " Click on the link below to confirm your email address.\n\n" + "http://localhost:54283/Security/Confirmation?id=" + EncryptedEmail
                     Body = "Hi " + UserBO.CustomerFullName + ",\nClick on the link below to confirm your email address.\n\n" + "http://paymatelk.azurewebsites.net/Security/Confirmation?id=",
                     IsNewCustomer = true
                 };
