@@ -96,6 +96,7 @@ namespace PaymateMVC.Controllers
                 };
                 MessageBuilder.SendEmail(messageBuilder);
                 ViewBag.ModelIsValid = true;
+                return PartialView("_ConfirmEmail", ViewBag.UserFullName = UserBO.CustomerFullName);
             }
             else
                 return Content("Error Occcured While Processing Your Request");
