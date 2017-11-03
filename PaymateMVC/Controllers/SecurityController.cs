@@ -50,7 +50,6 @@ namespace PaymateMVC.Controllers
             {
                 FormsAuthentication.SetAuthCookie(userBO.CustomerEmailAddress, false);
                 FormsAuthentication.RedirectFromLoginPage(loginViewModel.CustomerEmailAddress, false);
-
                 if (Url.IsLocalUrl(ReturnUrl))
                     return Redirect(ReturnUrl);
                 else
@@ -97,7 +96,6 @@ namespace PaymateMVC.Controllers
                 };
                 MessageBuilder.SendEmail(messageBuilder);
                 ViewBag.ModelIsValid = true;
-                return PartialView("_ConfirmEmail",ViewBag.UserFullName=UserBO.CustomerFullName);
             }
             else
                 return Content("Error Occcured While Processing Your Request");
@@ -115,5 +113,5 @@ namespace PaymateMVC.Controllers
             _RegisterService.ConfirmEmail(id);
             return RedirectToAction("MainMenu", "DashBoard");
         }
- }
+    }
 }

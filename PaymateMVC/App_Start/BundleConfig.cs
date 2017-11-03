@@ -77,7 +77,7 @@ namespace PaymateMVC
 
             #endregion
 
-            
+
 
             #region Dashboard
 
@@ -101,6 +101,13 @@ namespace PaymateMVC
                 "~/Assets/js/sb-admin-datatables.min.js",
                 "~/Assets/js/sb-admin-charts.min.js"
                 ));
+            #endregion
+
+
+            #region calander
+
+
+
             #endregion
         }
     }
