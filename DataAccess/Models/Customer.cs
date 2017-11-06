@@ -42,5 +42,7 @@ namespace DataAccess.Models
         public int Status { get; set; }
 
         public bool EmailConfirmed { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
     }
 }

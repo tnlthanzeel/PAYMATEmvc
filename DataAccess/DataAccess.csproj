@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201710280717478_confirm_email_property_added.Designer.cs">
       <DependentUpon>201710280717478_confirm_email_property_added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711060144525_dateofbirth_added.cs" />
+    <Compile Include="Migrations\201711060144525_dateofbirth_added.Designer.cs">
+      <DependentUpon>201711060144525_dateofbirth_added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Gender.cs" />
@@ -87,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710280717478_confirm_email_property_added.resx">
       <DependentUpon>201710280717478_confirm_email_property_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711060144525_dateofbirth_added.resx">
+      <DependentUpon>201711060144525_dateofbirth_added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
