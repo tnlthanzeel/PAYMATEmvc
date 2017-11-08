@@ -16,6 +16,7 @@
     @RenderBody()
     @Scripts.Render("~/Login/js")
     @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("script", required: false)
     @if (TempData["LoginError"] != null)
     {
         @Scripts.Render("~/Bundles/toastr")

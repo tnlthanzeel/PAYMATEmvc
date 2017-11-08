@@ -109,6 +109,14 @@ namespace PaymateMVC
 
 
             #endregion
+
+            #region datetimepicker
+            bundles.Add(new ScriptBundle("~/datetimepicker/css").Include(
+                "~/Content/themes/base/jquery-ui.min.css"
+                ));
+            #endregion
         }
+
+
     }
 }

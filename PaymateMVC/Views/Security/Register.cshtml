@@ -4,6 +4,8 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
+@Styles.Render("~/datetimepicker/css");
+@*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
 <div class="container">
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register an Account</div>
@@ -30,7 +32,8 @@
                         </div>
                         <div>
                             @Html.LabelFor(m => m.DateOfBirth)
-                            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
+                            @*@Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })*@
+                            @Html.EditorFor(m => m.DateOfBirth, new { htmlAttributes = new { @class = "datepicker form-control" } })
                             @Html.ValidationMessageFor(m => m.DateOfBirth, null, new { @class = "text-danger" })
                         </div>
                     </div>
@@ -67,3 +70,13 @@
             </div>
         </div>
     </div>
+</div>
+@section script
+    {
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
+}
