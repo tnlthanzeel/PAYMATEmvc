@@ -54,6 +54,7 @@ namespace PaymateMVC.ViewModels
 
 
         [Display(Name = "Date Of Birth")]
+        [Required(ErrorMessage ="Select your date of birth")]
         public DateTime? DateOfBirth { get; set; }
 
         public UserBO Mapping(RegisterViewModel registerViewModel)
