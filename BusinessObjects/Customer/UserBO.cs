@@ -28,6 +28,8 @@ namespace BusinessObjects
 
         public bool EmailConfirmed { get; set; }
 
+        public DateTime? DateOfBirth { get; set; }
+
         public string CustomerFullName
         {
             get
