@@ -11,12 +11,13 @@
     @Styles.Render("~/Login/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/toastr/css")
+    <link href="~/Assets/home/vendor/font-awesome/css/font-awesome.css" rel="stylesheet" />
 </head>
 <body class="bg-dark" style="">
     @RenderBody()
     @Scripts.Render("~/Login/js")
     @Scripts.Render("~/bundles/jqueryval")
-    @RenderSection("script", required: false)
+    @RenderSection("calendar", required: false)
     @if (TempData["LoginError"] != null)
     {
         @Scripts.Render("~/Bundles/toastr")
