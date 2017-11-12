@@ -11,8 +11,7 @@ using UIServices.CustomerServices;
 using UIServices.LookupServices;
 using System.Security.Policy;
 using Message;
-
-
+using Common.Enumarations;
 
 namespace PaymateMVC.Controllers
 {

@@ -28,7 +28,6 @@ namespace UIServices.CustomerServices
                 .Select(s => new UserBO()
                 {
                     CustomerEmailAddress = s.CustomerEmailAddress,
-                    //EmailConfirmed = s.EmailConfirmed
                 }).FirstOrDefault();
             return UserBO;
         }

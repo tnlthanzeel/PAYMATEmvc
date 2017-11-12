@@ -11,6 +11,6 @@ namespace Common.Enumarations
     public enum ErrorMessagesEnum
     {
         [Description("This Email Address is already taken.")]
-        EmailAlreadyTaken
+        EmailAlreadyTaken = 1
     }
 }

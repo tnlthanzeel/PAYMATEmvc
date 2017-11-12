@@ -47,14 +47,13 @@ namespace PaymateMVC.ViewModels
 
         public IEnumerable<Gender> Gender { get; set; }
 
-
         [Display(Name = "Gender")]
         [Required(ErrorMessage = "Please Select Your Gender")]
         public int GenderID { get; set; }
 
 
         [Display(Name = "Date Of Birth")]
-        [Required(ErrorMessage ="Select your date of birth")]
+        [Required(ErrorMessage = "Select your date of birth")]
         public DateTime? DateOfBirth { get; set; }
 
         public UserBO Mapping(RegisterViewModel registerViewModel)
