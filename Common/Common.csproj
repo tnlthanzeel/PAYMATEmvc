@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumarations\CustomerStatusEnum.cs" />
+    <Compile Include="Enumarations\EnumDescription.cs" />
     <Compile Include="Enumarations\ErrorMessageEnum.cs" />
-    <Compile Include="Enumarations\GetEnumDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
