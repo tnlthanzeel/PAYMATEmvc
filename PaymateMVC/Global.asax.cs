@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PaymateMVC.App_Start;
+using PaymateMVC.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace PaymateMVC
     {
         protected void Application_Start()
         {
-           // Mapper.Initialize(c => c.AddProfile<MappingProfile>());
+            InitializeMapper.Initialize();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

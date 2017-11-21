@@ -28,7 +28,6 @@ namespace PaymateMVC.ViewModels
 
         public UserBO Mapping(LoginViewModel loginViewModel)
         {
-            Mapper.Initialize(c => c.CreateMap<LoginViewModel, UserBO>());
             loginViewModel.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(loginViewModel.CustomerPassword, "SHA1");
             return Mapper.Map<UserBO>(loginViewModel);
         }

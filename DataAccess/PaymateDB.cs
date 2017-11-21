@@ -16,5 +16,6 @@ namespace DataAccess
        
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Gender> Gender { get; set; }
+
     }
 }
