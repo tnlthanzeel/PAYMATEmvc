@@ -165,7 +165,7 @@
                     onShown: undefined,
                     hideMethod: 'fadeOut',
                     hideDuration: 1000,
-                    hideEasing: 'swing',
+                    hideEasing: 'linear',
                     onHidden: undefined,
 
                     extendedTimeOut: 1000,

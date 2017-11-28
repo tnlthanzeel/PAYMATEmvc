@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using RedWillow.MvcToastrFlash
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -18,9 +19,8 @@
     @Scripts.Render("~/Login/js")
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("calendar", required: false)
-    @if (TempData["LoginError"] != null)
-    {
-        @Scripts.Render("~/Bundles/toastr")
-    }
+    @Scripts.Render("~/Bundles/toastr")
+    @Html.ToastrNotifications()
+
 </body>
 </html>

@@ -12,23 +12,23 @@ using UIServices.LookupServices;
 using System.Security.Policy;
 using Message;
 using Common.Enumarations;
+using RedWillow.MvcToastrFlash;
 
 namespace PaymateMVC.Controllers
 {
     [AllowAnonymous]
     public class SecurityController : Controller
     {
-        private readonly LoginService _LoginService;
-        private readonly GenderLookupService _GenderLookupService;
-        private readonly RegisterService _RegisterService;
+        private readonly LoginService _loginService;
+        private readonly GenderLookupService _genderLookupService;
+        private readonly RegisterService _registerService;
         //private readonly IMapper _mapper;
 
-        public SecurityController(/*IMapper mapper*/)
+        public SecurityController(LoginService loginService, GenderLookupService genderLookupService, RegisterService registerService)
         {
-            _LoginService = new LoginService();
-            _RegisterService = new RegisterService();
-            _GenderLookupService = new GenderLookupService();
-            //_mapper = mapper;
+            _loginService = loginService;
+            _registerService = registerService;
+            _genderLookupService = genderLookupService;
         }
 
         //  GET: Security
@@ -43,10 +43,12 @@ namespace PaymateMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel, string ReturnUrl)
         {
+
             var userBO = loginViewModel.Mapping(loginViewModel);
-            userBO = _LoginService.GetUser(userBO.CustomerEmailAddress, userBO.CustomerPassword);
+            userBO = _loginService.GetUser(userBO.CustomerEmailAddress, userBO.CustomerPassword);
             if (userBO != null)
             {
+
                 FormsAuthentication.SetAuthCookie(userBO.CustomerEmailAddress, false);
                 FormsAuthentication.RedirectFromLoginPage(loginViewModel.CustomerEmailAddress, false);
                 if (Url.IsLocalUrl(ReturnUrl))
@@ -55,7 +57,7 @@ namespace PaymateMVC.Controllers
                     return RedirectToAction("MainMenu", "DashBoard");
             }
             ModelState.Remove("CustomerPassword");
-            TempData["LoginError"] = "LoginError";
+            this.Flash(Toastr.ERROR, "Login Error", "Incorrect Email Address Or Password");
             return View("Login", loginViewModel);
         }
 
@@ -71,7 +73,7 @@ namespace PaymateMVC.Controllers
         {
             var registerViewModel = new RegisterViewModel()
             {
-                Gender = _GenderLookupService.GetGender()
+                Gender = _genderLookupService.GetGender()
             };
             return View(registerViewModel);
         }
@@ -83,7 +85,7 @@ namespace PaymateMVC.Controllers
             if (ModelState.IsValid)
             {
                 var UserBO = registerViewModel.Mapping(registerViewModel);
-                _RegisterService.RegisterCustomer(UserBO);
+                _registerService.RegisterCustomer(UserBO);
 
                 MessageBuilder messageBuilder = new MessageBuilder()
                 {
@@ -113,13 +115,13 @@ namespace PaymateMVC.Controllers
         [HttpPost]
         public JsonResult DoesUserEmailExist(string CustomerEmailAddress)
         {
-            var doesUserExist = _RegisterService.GetUserEmail(CustomerEmailAddress);
+            var doesUserExist = _registerService.GetUserEmail(CustomerEmailAddress);
             return Json(!doesUserExist);
         }
 
         public ActionResult Confirmation(string id)
         {
-            _RegisterService.ConfirmEmail(id);
+            _registerService.ConfirmEmail(id);
             return RedirectToAction("MainMenu", "DashBoard");
         }
     }
