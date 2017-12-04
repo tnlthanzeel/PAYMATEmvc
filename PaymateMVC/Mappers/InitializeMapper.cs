@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects;
+using DataAccess.Models;
 using PaymateMVC.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace PaymateMVC.Mappers
             {
                 m.CreateMap<LoginViewModel, UserBO>();
                 m.CreateMap<RegisterViewModel, UserBO>();
+                m.CreateMap<UserBO, Customer>();
             });
         }
     }

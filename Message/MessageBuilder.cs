@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
@@ -35,7 +36,7 @@ namespace Message
 
         public bool IsNewCustomer { get; set; }
 
-        public static void SendEmail(MessageBuilder messageBuilder)
+        public static async Task SendEmailAsync(MessageBuilder messageBuilder)
         {
             messageBuilder.Body += messageBuilder.IsNewCustomer == true ? EncryptEmail(messageBuilder.To) : string.Empty;
             mailMessage = new MailMessage("d015240@student.nibm.lk", messageBuilder.To)
@@ -43,12 +44,12 @@ namespace Message
                 Subject = messageBuilder.Subject,
                 Body = messageBuilder.Body
             };
-            smtpClient.Send(mailMessage);
+            await smtpClient.SendMailAsync(mailMessage);
         }
 
         public static void SendEmails(MessageBuilder messageBuilder)
         {
-            
+
         }
 
         private static string EncryptEmail(string EmailTo)

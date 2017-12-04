@@ -17,18 +17,18 @@ namespace UIServices.CustomerServices
     {
         private readonly PaymateDB _paymateDB;
 
-        public LoginService()
+        public LoginService(PaymateDB paymateDB)
         {
-            _paymateDB = new PaymateDB();
+            _paymateDB = paymateDB;
         }
 
-        public UserBO GetUser(string CustomerEmail, string Password)
+        public async Task<UserBO> GetUserAsync(string CustomerEmail, string Password)
         {
-            var UserBO = _paymateDB.Customer.AsNoTracking().Where(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == true)
+            var UserBO =await _paymateDB.Customer.AsNoTracking().Where(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == true)
                 .Select(s => new UserBO()
                 {
                     CustomerEmailAddress = s.CustomerEmailAddress,
-                }).FirstOrDefault();
+                }).FirstOrDefaultAsync();
             return UserBO;
         }
     }

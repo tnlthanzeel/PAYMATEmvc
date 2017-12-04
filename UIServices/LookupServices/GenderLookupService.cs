@@ -2,6 +2,7 @@
 using DataAccess.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,16 +13,16 @@ namespace UIServices.LookupServices
     {
         private readonly PaymateDB _GenderLookup;
 
-        public GenderLookupService()
+        public GenderLookupService(PaymateDB genderLookup)
         {
-            _GenderLookup = new PaymateDB();
+            _GenderLookup = genderLookup;
         }
 
 
-        public IEnumerable<Gender> GetGender()
+        public async Task<IEnumerable<Gender>> GetGenderAsync()
         {
 
-            var Genders = _GenderLookup.Gender.AsNoTracking().ToList();
+            var Genders =await _GenderLookup.Gender.AsNoTracking().ToListAsync();
             return Genders;
 
         }

@@ -13,6 +13,7 @@ using System.Security.Policy;
 using Message;
 using Common.Enumarations;
 using RedWillow.MvcToastrFlash;
+using System.Net.Mail;
 
 namespace PaymateMVC.Controllers
 {
@@ -22,7 +23,6 @@ namespace PaymateMVC.Controllers
         private readonly LoginService _loginService;
         private readonly GenderLookupService _genderLookupService;
         private readonly RegisterService _registerService;
-        //private readonly IMapper _mapper;
 
         public SecurityController(LoginService loginService, GenderLookupService genderLookupService, RegisterService registerService)
         {
@@ -41,11 +41,11 @@ namespace PaymateMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel loginViewModel, string ReturnUrl)
+        public async System.Threading.Tasks.Task<ActionResult> Login(LoginViewModel loginViewModel, string ReturnUrl)
         {
 
             var userBO = loginViewModel.Mapping(loginViewModel);
-            userBO = _loginService.GetUser(userBO.CustomerEmailAddress, userBO.CustomerPassword);
+            userBO = await _loginService.GetUserAsync(userBO.CustomerEmailAddress, userBO.CustomerPassword);
             if (userBO != null)
             {
 
@@ -69,23 +69,23 @@ namespace PaymateMVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Register()
+        public async System.Threading.Tasks.Task<ActionResult> Register()
         {
             var registerViewModel = new RegisterViewModel()
             {
-                Gender = _genderLookupService.GetGender()
+                Gender = await _genderLookupService.GetGenderAsync()
             };
             return View(registerViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel registerViewModel)
+        public async System.Threading.Tasks.Task<ActionResult> Register(RegisterViewModel registerViewModel)
         {
-            if (ModelState.IsValid)
+            try
             {
                 var UserBO = registerViewModel.Mapping(registerViewModel);
-                _registerService.RegisterCustomer(UserBO);
+                await _registerService.RegisterCustomerAsync(UserBO);
 
                 MessageBuilder messageBuilder = new MessageBuilder()
                 {
@@ -94,14 +94,17 @@ namespace PaymateMVC.Controllers
                     Body = "Hi " + UserBO.CustomerFullName + ",\nClick on the link below to confirm your email address.\n\n" + "http://paymatelk.azurewebsites.net/Security/Confirmation?id=",
                     IsNewCustomer = true
                 };
-                MessageBuilder.SendEmail(messageBuilder);
+                await MessageBuilder.SendEmailAsync(messageBuilder);
                 ViewBag.ModelIsValid = true;
                 Dispose();
                 return RedirectToAction("ConfirmationMessage", "Security", new { UserBO.CustomerFullName });
             }
-            else
-                return Content("Error Occcured While Processing Your Request");
-
+            catch
+            {
+                registerViewModel.Gender = await _genderLookupService.GetGenderAsync();
+                this.Flash(Toastr.ERROR, "Error", "Oops!, something went wrong while processing your request");
+                return View(registerViewModel);
+            }
         }
 
 
@@ -113,15 +116,15 @@ namespace PaymateMVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult DoesUserEmailExist(string CustomerEmailAddress)
+        public async System.Threading.Tasks.Task<JsonResult> DoesUserEmailExist(string CustomerEmailAddress)
         {
-            var doesUserExist = _registerService.GetUserEmail(CustomerEmailAddress);
+            var doesUserExist = await _registerService.GetUserEmailAsync(CustomerEmailAddress);
             return Json(!doesUserExist);
         }
 
-        public ActionResult Confirmation(string id)
+        public async System.Threading.Tasks.Task<ActionResult> Confirmation(string id)
         {
-            _registerService.ConfirmEmail(id);
+            await _registerService.ConfirmEmailAsync(id);
             return RedirectToAction("MainMenu", "DashBoard");
         }
     }

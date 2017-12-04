@@ -7,6 +7,7 @@ using DataAccess.Models;
 using Message;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -19,37 +20,36 @@ namespace UIServices.CustomerServices
     {
         private readonly PaymateDB _paymateDB;
 
-        public RegisterService()
+        public RegisterService(PaymateDB paymateDB)
         {
-            _paymateDB = new PaymateDB();
+            _paymateDB = paymateDB;
         }
 
-        public void RegisterCustomer(UserBO userBO)
+        public async Task RegisterCustomerAsync(UserBO userBO)
         {
-            Mapper.Initialize(c => c.CreateMap<UserBO, Customer>());
             var customer = Mapper.Map<Customer>(userBO);
             _paymateDB.Customer.Add(customer);
-            _paymateDB.SaveChanges();
+            await _paymateDB.SaveChangesAsync();
         }
 
-        public void ConfirmEmail(string id)
+        public async Task ConfirmEmailAsync(string id)
         {
             try
             {
                 var DecryptedEmail = MessageBuilder.Decrypt(id);
                 var EmailConfirmed = _paymateDB.Customer.Single(w => w.CustomerEmailAddress == DecryptedEmail && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == false);
                 EmailConfirmed.EmailConfirmed = true;
-                _paymateDB.SaveChanges();
+                await _paymateDB.SaveChangesAsync();
             }
             catch
             {
-                
+
             }
         }
 
-        public bool GetUserEmail(string NewUserEmailAddress)
+        public async Task<bool> GetUserEmailAsync(string NewUserEmailAddress)
         {
-            var userEamailExist = _paymateDB.Customer.AsNoTracking().Any(w => w.CustomerEmailAddress == NewUserEmailAddress);
+            var userEamailExist = await _paymateDB.Customer.AsNoTracking().AnyAsync(w => w.CustomerEmailAddress == NewUserEmailAddress);
             return userEamailExist;
         }
     }

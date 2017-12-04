@@ -1,4 +1,6 @@
+using DataAccess;
 using System;
+using System.Net.Mail;
 using UIServices.CustomerServices;
 using UIServices.LookupServices;
 using Unity;
@@ -43,9 +45,9 @@ namespace PaymateMVC
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<PaymateDB, PaymateDB>();
             container.RegisterType<LoginService, LoginService>();
             container.RegisterType<GenderLookupService, GenderLookupService>();
-
         }
     }
 }
