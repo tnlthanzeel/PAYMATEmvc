@@ -24,7 +24,7 @@ namespace UIServices.CustomerServices
 
         public async Task<UserBO> GetUserAsync(string CustomerEmail, string Password)
         {
-            var UserBO =await _paymateDB.Customer.AsNoTracking().Where(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == true)
+            var UserBO = await _paymateDB.Customer.AsNoTracking().Where(w => w.CustomerEmailAddress == CustomerEmail && w.CustomerPassword == Password && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == true)
                 .Select(s => new UserBO()
                 {
                     CustomerEmailAddress = s.CustomerEmailAddress,

@@ -25,6 +25,8 @@ namespace PaymateMVC.ViewModels
 
         public bool EmailConfirmed { get; set; }
 
+        public Guid CustomerGuid { get; set; }
+
 
         public UserBO Mapping(LoginViewModel loginViewModel)
         {

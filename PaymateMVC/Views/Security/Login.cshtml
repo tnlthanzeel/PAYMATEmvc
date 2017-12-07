@@ -4,7 +4,8 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
-@using (Html.BeginForm("Login", "Security", new { ReturnUrl = ViewBag.returnURL }, FormMethod.Post))
+@Html.Partial("_Loader", "page-spinner")
+@using (Html.BeginForm("Login", "Security", new { ReturnUrl = ViewBag.returnURL }, FormMethod.Post, new { id = "login-form" }))
 {
     @Html.AntiForgeryToken()
     <div class="container">
@@ -28,7 +29,7 @@
                         </label>
                     </div>
                 </div>
-                <input type="submit" name="Login" value="Login" class="btn btn-primary btn-block" />
+                <input type="submit" name="Login" value="Login" class="btn btn-primary btn-block" id="login-spinner" />
                 <div class="text-center">
                     @Html.ActionLink("Register an Account", "Register", "Security", null, null)
                     <a id="ancho" class="d-block small" href="forgot-password.html">Forgot Password?</a>
@@ -37,7 +38,7 @@
         </div>
     </div>
 }
- 
 
-    
+
+
 

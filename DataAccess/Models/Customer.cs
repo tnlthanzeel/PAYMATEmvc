@@ -14,6 +14,8 @@ namespace DataAccess.Models
         [Key]
         public int CustomerId { get; set; }
 
+        public Guid CustomerGuid { get; set; }
+
         [Required]
         public string CustomerFirstName { get; set; }
 

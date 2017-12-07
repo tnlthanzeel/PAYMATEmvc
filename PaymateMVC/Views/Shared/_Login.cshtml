@@ -1,6 +1,5 @@
 ﻿@using RedWillow.MvcToastrFlash
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -9,14 +8,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title></title>
+    @Styles.Render("~/Content/common")
     @Styles.Render("~/Login/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/toastr/css")
     <link href="~/Assets/home/vendor/font-awesome/css/font-awesome.css" rel="stylesheet" />
 </head>
 <body class="bg-dark" style="">
+
     @RenderBody()
+
     @Scripts.Render("~/Login/js")
+    @Scripts.Render("~/bundles/common")
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("calendar", required: false)
     @Scripts.Render("~/Bundles/toastr")

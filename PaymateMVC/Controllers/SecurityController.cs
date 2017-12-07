@@ -13,7 +13,7 @@ using System.Security.Policy;
 using Message;
 using Common.Enumarations;
 using RedWillow.MvcToastrFlash;
-using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace PaymateMVC.Controllers
 {
@@ -41,14 +41,12 @@ namespace PaymateMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<ActionResult> Login(LoginViewModel loginViewModel, string ReturnUrl)
+        public async Task<ActionResult> Login(LoginViewModel loginViewModel, string ReturnUrl)
         {
-
             var userBO = loginViewModel.Mapping(loginViewModel);
             userBO = await _loginService.GetUserAsync(userBO.CustomerEmailAddress, userBO.CustomerPassword);
             if (userBO != null)
             {
-
                 FormsAuthentication.SetAuthCookie(userBO.CustomerEmailAddress, false);
                 FormsAuthentication.RedirectFromLoginPage(loginViewModel.CustomerEmailAddress, false);
                 if (Url.IsLocalUrl(ReturnUrl))
@@ -69,7 +67,7 @@ namespace PaymateMVC.Controllers
         }
 
         [HttpGet]
-        public async System.Threading.Tasks.Task<ActionResult> Register()
+        public async Task<ActionResult> Register()
         {
             var registerViewModel = new RegisterViewModel()
             {
@@ -80,7 +78,7 @@ namespace PaymateMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<ActionResult> Register(RegisterViewModel registerViewModel)
+        public async Task<ActionResult> Register(RegisterViewModel registerViewModel)
         {
             try
             {
@@ -116,13 +114,13 @@ namespace PaymateMVC.Controllers
         }
 
         [HttpPost]
-        public async System.Threading.Tasks.Task<JsonResult> DoesUserEmailExist(string CustomerEmailAddress)
+        public async Task<JsonResult> DoesUserEmailExist(string CustomerEmailAddress)
         {
             var doesUserExist = await _registerService.GetUserEmailAsync(CustomerEmailAddress);
             return Json(!doesUserExist);
         }
 
-        public async System.Threading.Tasks.Task<ActionResult> Confirmation(string id)
+        public async Task<ActionResult> Confirmation(string id)
         {
             await _registerService.ConfirmEmailAsync(id);
             return RedirectToAction("MainMenu", "DashBoard");

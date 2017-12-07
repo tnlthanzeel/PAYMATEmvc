@@ -30,14 +30,14 @@ namespace PaymateMVC
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                      "~/Assets/home/vendor/bootstrap/js/bootstrap.min.js",
-                     "~/Assets/home/js/grayscale.min.js"
-
+                     "~/Assets/home/js/grayscale.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                        "~/Assets/home/vendor/bootstrap/css/bootstrap.min.css",
                       "~/Assets/home/vendor/font-awesome/css/font-awesome.min.css",
-                      "~/Assets/home/css/grayscale.min.css"
+                      "~/Assets/home/css/grayscale.min.css",
+                       "~/Assets/spinner-overlay.css"
                       ));
 
             #endregion
@@ -51,10 +51,11 @@ namespace PaymateMVC
                 ));
 
             bundles.Add(new ScriptBundle("~/Login/js").Include(
-                "~/Assets/vendor/jquery/jquery.min.js",
+               "~/Assets/vendor/jquery/jquery.min.js",
                 "~/Assets/vendor/popper/popper.min.js",
                 "~/Assets/vendor/bootstrap/js/bootstrap.min.js",
-                "~/Assets/vendor/jquery-easing/jquery.easing.min.js"
+                "~/Assets/vendor/jquery-easing/jquery.easing.min.js",
+                 "~/Scripts/Register.js"
                 ));
 
 
@@ -70,9 +71,8 @@ namespace PaymateMVC
             ));
 
             bundles.Add(new ScriptBundle("~/Bundles/toastr").Include(
-                "~/Scripts/toastr.js*",
-                "~/Scripts/toastrImp.js"
-                ));
+                "~/Scripts/toastr.js*"
+                 ));
 
 
             #endregion
@@ -104,11 +104,6 @@ namespace PaymateMVC
             #endregion
 
 
-            #region calander
-
-
-
-            #endregion
 
             #region datetimepicker
             bundles.Add(new StyleBundle("~/datetimepicker/css").Include(
@@ -120,8 +115,20 @@ namespace PaymateMVC
                 "~/Scripts/calender.js"
                 ));
             #endregion
+
+
+
+            #region common
+
+            bundles.Add(new StyleBundle("~/Content/common").Include(
+                "~/Content/themes/Loader.css",
+                "~/Assets/spinner-overlay.css"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/common").Include(
+                       "~/Scripts/AppCommon.js"
+                      ));
+            #endregion
         }
-
-
     }
 }

@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201711171756027_deletedakmal.Designer.cs">
       <DependentUpon>201711171756027_deletedakmal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712061730287_customeruid.cs" />
+    <Compile Include="Migrations\201712061730287_customeruid.Designer.cs">
+      <DependentUpon>201712061730287_customeruid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Gender.cs" />
@@ -108,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711171756027_deletedakmal.resx">
       <DependentUpon>201711171756027_deletedakmal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712061730287_customeruid.resx">
+      <DependentUpon>201712061730287_customeruid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

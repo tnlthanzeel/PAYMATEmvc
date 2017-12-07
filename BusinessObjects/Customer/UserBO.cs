@@ -10,6 +10,9 @@ namespace BusinessObjects
     public class UserBO : CommonBo
     {
         public int CustomerId { get; set; }
+
+        public Guid CustomerGuid { get; set; }
+
         public string CustomerFirstName { get; set; }
 
         public string CustomerLastName { get; set; }

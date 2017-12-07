@@ -1,13 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "MainMenu";
     Layout = "~/Views/Shared/_DashBoard.cshtml";
 }
 
-
-
 <div class="container-fluid">
-    welcome : @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">

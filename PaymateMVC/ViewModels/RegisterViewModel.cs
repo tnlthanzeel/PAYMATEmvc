@@ -59,6 +59,7 @@ namespace PaymateMVC.ViewModels
         public UserBO Mapping(RegisterViewModel registerViewModel)
         {
             var UserBO = Mapper.Map<UserBO>(registerViewModel);
+            UserBO.CustomerGuid = Guid.NewGuid();
             UserBO.Status = (int)CustomerStatusEnum.Active;
             UserBO.CreatedOn = DateTime.Now.AddHours(5).AddMinutes(30);
             UserBO.EmailConfirmed = false;
