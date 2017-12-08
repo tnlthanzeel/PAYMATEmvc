@@ -7,11 +7,11 @@ $(document).ready(function () {
 var AppCommonFunction = function () {
     return {
         ShowWaitBlock: function () {
-            $('#page-spinner').show();
+            $('#page-spinner').fadeIn(400);
         },
 
         HideWaitBlock: function () {
-            $('#page-spinner').hide();
+            $('#page-spinner').fadeOut(300);
         }
     };
 }();
