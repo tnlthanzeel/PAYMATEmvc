@@ -1,22 +1,12 @@
 ﻿$(document).ready(function () {
-    $('#page-spinner').hide();
+    $('#page-spinner').fadeOut(400);
     AppCommonFunction.HideWaitBlock();
 });
 
-var formregister = $("#register-form");
-
-$('#register-spinner').click(function () {
+var form = $('#reg-log-form');
+$('#reg-log-button').click(function () {
     AppCommonFunction.ShowWaitBlock();
-    if (formregister.valid() == false) {
-        AppCommonFunction.HideWaitBlock();
-    }
-});
-
-var formlogin = $("#login-form");
-
-$('#login-spinner').click(function () {
-    AppCommonFunction.ShowWaitBlock();
-    if (formlogin.valid() == false) {
+    if (form.valid() == false) {
         AppCommonFunction.HideWaitBlock();
     }
 });

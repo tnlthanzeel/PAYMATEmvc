@@ -1,7 +1,7 @@
-﻿$('#page-spinner').show();
+﻿$('#page-spinner').fadeIn(400);
 
 $(document).ready(function () {
-    $('#page-spinner').hide();
+    $('#page-spinner').fadeOut(400);
 });
 
 var AppCommonFunction = function () {
@@ -11,7 +11,7 @@ var AppCommonFunction = function () {
         },
 
         HideWaitBlock: function () {
-            $('#page-spinner').fadeOut(300);
+            $('#page-spinner').fadeOut(400);
         }
     };
 }();

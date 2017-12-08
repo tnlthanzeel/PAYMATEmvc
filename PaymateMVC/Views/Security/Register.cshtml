@@ -10,7 +10,7 @@
         <div class="card-header">Register an Account</div>
         <div class="card-body">
             @Html.Partial("_Loader", "page-spinner")
-            @using (Html.BeginForm("Register", "Security", FormMethod.Post,new { id="register-form"}))
+            @using (Html.BeginForm("Register", "Security", FormMethod.Post, new { id = "reg-log-form" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="form-group">
@@ -61,7 +61,7 @@
                     @Html.TextBoxFor(x => x.CustomerCardNo, new { @class = "form-control", placeholder = "0123456789" })
                     @Html.ValidationMessageFor(x => x.CustomerCardNo, null, new { @class = "text-danger" })
                 </div>
-                <input type="submit" value="Register" class="btn btn-primary btn-block" id="register-spinner">
+                <input type="submit" value="Register" class="btn btn-primary btn-block reg-log-button" id= "reg-log-button">
             }
             <div class="text-center">
                 @Html.ActionLink("Login", "Login", "Security", null, new { @class = "d-block small mt-3" })
