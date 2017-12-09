@@ -61,10 +61,10 @@
                     @Html.TextBoxFor(x => x.CustomerCardNo, new { @class = "form-control", placeholder = "0123456789" })
                     @Html.ValidationMessageFor(x => x.CustomerCardNo, null, new { @class = "text-danger" })
                 </div>
-                <input type="submit" value="Register" class="btn btn-primary btn-block reg-log-button" id= "reg-log-button">
+                <input type="submit" value="Register" class="btn btn-primary col-md-12" id= "reg-log-button">
             }
             <div class="text-center">
-                @Html.ActionLink("Login", "Login", "Security", null, new { @class = "d-block small mt-3" })
+                @Html.ActionLink("Already have an account? Login", "Login", "Security", null, new { @class = "d-block small mt-3" })
                 @*<a class="d-block small" href="forgot-password.html">Forgot Password?</a>*@
             </div>
         </div>

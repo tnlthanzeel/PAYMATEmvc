@@ -5,9 +5,12 @@
 
 var form = $('#reg-log-form');
 $('#reg-log-button').click(function () {
-    AppCommonFunction.ShowWaitBlock();
+   
     if (form.valid() == false) {
         AppCommonFunction.HideWaitBlock();
+    }
+    else {
+        AppCommonFunction.ShowWaitBlock();
     }
 });
 
