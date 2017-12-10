@@ -32,7 +32,7 @@
                 <input type="submit" name="Login" value="Login" class="btn btn-success form-control" id="reg-log-button" />
                 <div class="text-center">
                     @Html.ActionLink("Register an Account", "Register", "Security", null, null)
-                    <a id="ancho" class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                    @Html.ActionLink("Forgot Password?", "ForgotPassword", "Security", null, new { @class = "d-block small" })
                 </div>
             </div>
         </div>

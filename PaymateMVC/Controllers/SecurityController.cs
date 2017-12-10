@@ -14,6 +14,7 @@ using Message;
 using Common.Enumarations;
 using RedWillow.MvcToastrFlash;
 using System.Threading.Tasks;
+using Common;
 
 namespace PaymateMVC.Controllers
 {
@@ -23,12 +24,14 @@ namespace PaymateMVC.Controllers
         private readonly LoginService _loginService;
         private readonly GenderLookupService _genderLookupService;
         private readonly RegisterService _registerService;
+        private readonly ResetPasswordService _resetPasswordService;
 
-        public SecurityController(LoginService loginService, GenderLookupService genderLookupService, RegisterService registerService)
+        public SecurityController(LoginService loginService, GenderLookupService genderLookupService, RegisterService registerService, ResetPasswordService resetPasswordService)
         {
             _loginService = loginService;
             _registerService = registerService;
             _genderLookupService = genderLookupService;
+            _resetPasswordService = resetPasswordService;
         }
 
         //  GET: Security
@@ -47,15 +50,23 @@ namespace PaymateMVC.Controllers
             userBO = await _loginService.GetUserAsync(userBO.CustomerEmailAddress, userBO.CustomerPassword);
             if (userBO != null)
             {
-                FormsAuthentication.SetAuthCookie(userBO.CustomerEmailAddress, false);
-                FormsAuthentication.RedirectFromLoginPage(loginViewModel.CustomerEmailAddress, false);
-                if (Url.IsLocalUrl(ReturnUrl))
-                    return Redirect(ReturnUrl);
+                if (userBO.EmailConfirmed)
+                {
+                    FormsAuthentication.SetAuthCookie(userBO.CustomerEmailAddress, false);
+                    FormsAuthentication.RedirectFromLoginPage(loginViewModel.CustomerEmailAddress, false);
+                    if (Url.IsLocalUrl(ReturnUrl))
+                        return Redirect(ReturnUrl);
+                    else
+                        return RedirectToAction("MainMenu", "DashBoard");
+                }
                 else
-                    return RedirectToAction("MainMenu", "DashBoard");
+                    this.Flash(Toastr.ERROR, "Email Not Confirmed", "Seems like your email is not confirmed. Please check your email for a confirmation mail");
             }
-            ModelState.Remove("CustomerPassword");
-            this.Flash(Toastr.ERROR, "Login Error", "Incorrect Email Address Or Password");
+            else
+            {
+                ModelState.Remove("CustomerPassword");
+                this.Flash(Toastr.ERROR, "Login Error", "Incorrect Email Address Or Password");
+            }
             return View("Login", loginViewModel);
         }
 
@@ -95,7 +106,8 @@ namespace PaymateMVC.Controllers
                 await MessageBuilder.SendEmailAsync(messageBuilder);
                 ViewBag.ModelIsValid = true;
                 Dispose();
-                return RedirectToAction("ConfirmationMessage", "Security", new { UserBO.CustomerFullName });
+                ViewBag.UserFullName = UserBO.CustomerFullName;
+                return PartialView("_ConfirmEmail");
             }
             catch
             {
@@ -105,13 +117,6 @@ namespace PaymateMVC.Controllers
             }
         }
 
-
-        [HttpGet]
-        public ActionResult ConfirmationMessage(string CustomerFullName)
-        {
-            ViewBag.UserFullName = CustomerFullName;
-            return PartialView("_ConfirmEmail");
-        }
 
         [HttpPost]
         public async Task<JsonResult> DoesUserEmailExist(string CustomerEmailAddress)
@@ -124,6 +129,36 @@ namespace PaymateMVC.Controllers
         {
             await _registerService.ConfirmEmailAsync(id);
             return RedirectToAction("MainMenu", "DashBoard");
+        }
+
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ForgotPassword(LoginViewModel loginViewModelReset)
+        {
+            var doesUserExist = await _registerService.GetUserEmailAsync(loginViewModelReset.CustomerEmailAddress);
+            if (doesUserExist)
+            {
+                var ResetedPassword = RandomStringGenerator.GenerateRandomString();
+
+                await _resetPasswordService.UpdatedResetedPasswordAsync(loginViewModelReset.CustomerEmailAddress, ResetedPassword);
+
+
+                MessageBuilder messageBuilder = new MessageBuilder();
+
+
+                ViewBag.EmailToReset = loginViewModelReset.CustomerEmailAddress;
+                return PartialView("_PasswordReset");
+            }
+            else
+            {
+                this.Flash(Toastr.ERROR, "Error", "Invalid Email Address");
+                return View("ForgotPassword");
+            }
         }
     }
 }
