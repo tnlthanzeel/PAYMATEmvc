@@ -44,6 +44,11 @@ namespace PaymateMVC
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            //container.RegisterType<PaymateDB, PaymateDB>();
+            //Container.RegisterType<LoginService, LoginService>();
+            //Container.RegisterType<GenderLookupService, GenderLookupService>();
+            //Container.RegisterType<RegisterService, RegisterService>();
+            //Container.RegisterType<ResetPasswordService, ResetPasswordService>();
         }
     }
 }
