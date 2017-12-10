@@ -60,7 +60,7 @@ namespace PaymateMVC.Controllers
                         return RedirectToAction("MainMenu", "DashBoard");
                 }
                 else
-                    this.Flash(Toastr.ERROR, "Email Not Confirmed", "Seems like your email is not confirmed. Please check your email for a confirmation mail");
+                    this.Flash(Toastr.ERROR, "Email Not Confirmed", "Seems like your email is not confirmed yet. Please check your email for a confirmation mail");
             }
             else
             {
@@ -148,8 +148,14 @@ namespace PaymateMVC.Controllers
                 await _resetPasswordService.UpdatedResetedPasswordAsync(loginViewModelReset.CustomerEmailAddress, ResetedPassword);
 
 
-                MessageBuilder messageBuilder = new MessageBuilder();
-
+                MessageBuilder messageBuilder = new MessageBuilder()
+                {
+                    To = loginViewModelReset.CustomerEmailAddress,
+                    Subject = "PAYmate Password Reset",
+                    Body = "Hi, use the reset password given below to login and remember to change the password once you login\n\n Reset Password : " + ResetedPassword,
+                    IsNewCustomer = false
+                };
+                await MessageBuilder.SendEmailAsync(messageBuilder);
 
                 ViewBag.EmailToReset = loginViewModelReset.CustomerEmailAddress;
                 return PartialView("_PasswordReset");
