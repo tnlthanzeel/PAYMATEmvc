@@ -61,7 +61,7 @@ namespace PaymateMVC.ViewModels
             var UserBO = Mapper.Map<UserBO>(registerViewModel);
             UserBO.CustomerGuid = Guid.NewGuid();
             UserBO.Status = (int)CustomerStatusEnum.Active;
-            UserBO.CreatedOn = DateTime.Now.AddHours(5).AddMinutes(30);
+            UserBO.CreatedOn = DateTime.Now.ToLocalTime();
             UserBO.EmailConfirmed = false;
             UserBO.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(registerViewModel.CustomerPassword, "SHA1");
             return UserBO;

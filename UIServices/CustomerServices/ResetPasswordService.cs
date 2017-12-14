@@ -23,6 +23,7 @@ namespace UIServices.CustomerServices
         {
             var EmailToUpdatePassword = await _paymateDB.Customer.FirstOrDefaultAsync(x => x.CustomerEmailAddress == emailToResetPassword && x.Status == (int)CustomerStatusEnum.Active);
             EmailToUpdatePassword.CustomerPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(newPassword, "SHA1");
+            EmailToUpdatePassword.EditedOn = DateTime.Now.ToLocalTime(); 
             await _paymateDB.SaveChangesAsync();
         }
     }

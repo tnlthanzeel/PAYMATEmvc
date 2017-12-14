@@ -34,7 +34,6 @@ namespace PaymateMVC.Controllers
             _resetPasswordService = resetPasswordService;
         }
 
-        //  GET: Security
         [HttpGet]
         public ActionResult Login(string ReturnUrl)
         {
