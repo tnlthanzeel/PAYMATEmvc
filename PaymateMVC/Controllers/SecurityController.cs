@@ -143,15 +143,15 @@ namespace PaymateMVC.Controllers
             var doesUserExist = await _registerService.GetUserEmailAsync(loginViewModelReset.CustomerEmailAddress);
             if (doesUserExist)
             {
-                var ResetedPassword = RandomStringGenerator.GenerateRandomString();
-                Session["SecurityCode"] = ResetedPassword;
+                var securityCode = RandomStringGenerator.GenerateRandomString();
+                Session["SecurityCode"] = securityCode;
                 Session["EmailToUpdatepassword"] = loginViewModelReset.CustomerEmailAddress;
 
                 MessageBuilder messageBuilder = new MessageBuilder()
                 {
                     To = loginViewModelReset.CustomerEmailAddress,
                     Subject = "PAYmate Password Reset",
-                    Body = "Hi, use the reset password given below to login and remember to change the password once you login\n\n Reset Password : " + ResetedPassword,
+                    Body = "Hi, use the reset password given below to login and remember to change the password once you login\n\n Reset Password : " + securityCode,
                     IsNewCustomer = false
                 };
                 await MessageBuilder.SendEmailAsync(messageBuilder);
@@ -169,7 +169,8 @@ namespace PaymateMVC.Controllers
         [HttpGet]
         public ActionResult SecurityCode()
         {
-            ViewBag.EmailToReset = Session["EmailToUpdatepassword"].ToString();
+            if (Session["SecurityCode"] != null) ViewBag.EmailToReset = Session["EmailToUpdatepassword"].ToString();
+            else return RedirectToAction("Index", "Home");
             return View();
         }
 
@@ -193,10 +194,11 @@ namespace PaymateMVC.Controllers
             }
         }
 
-
+        [HttpGet]
         public ActionResult ResetPassword()
         {
-            return View();
+            if (Session["SecurityCode"] != null) return View();
+            else return RedirectToAction("Index", "Home");
         }
 
 

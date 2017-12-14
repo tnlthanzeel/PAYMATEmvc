@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
     <div class="container">
         <div class="card card-login mx-auto mt-5">
-            <div class="card-header">Login</div>
+            <div class="card-header">Login<a href="/Home/Index"><i class="fa fa-home fa-2x pull-right" aria-hidden="true"></i></a></div>
             <div class="card-body">
                 <div class="form-group">
                     @Html.LabelFor(m => m.CustomerEmailAddress)
