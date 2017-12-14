@@ -151,7 +151,7 @@ namespace PaymateMVC.Controllers
                 {
                     To = loginViewModelReset.CustomerEmailAddress,
                     Subject = "PAYmate Password Reset",
-                    Body = "Hi, use the reset password given below to login and remember to change the password once you login\n\n Reset Password : " + securityCode,
+                    Body = "Hi, use the security code given below to reset your password\n\n Security Code : " + securityCode,
                     IsNewCustomer = false
                 };
                 await MessageBuilder.SendEmailAsync(messageBuilder);
