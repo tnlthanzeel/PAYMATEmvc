@@ -1,18 +1,21 @@
 ﻿@model PaymateMVC.ViewModels.LoginViewModel
+
 @{
+    ViewBag.Title = "SecurityCode";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
-
+@Html.Partial("_Loader", "page-spinner")
 <div class="container">
     <div class="card card-login mx-auto mt-5">
         <div class="card-header" style="font-weight:700;color:limegreen">Password Reset Confirmed</div>
         <div class="card-body" style="text-align:center">
             Hi, a reset code has been sent to <b>@ViewBag.EmailToReset</b>. Please check your email and enter the code below.
             <br /><br />
-            @using (Html.BeginForm("ResetPassword", "Security", FormMethod.Post))
+            @using (Html.BeginForm("SecurityCode", "Security", FormMethod.Post, new { id = "reg-log-form" }))
             {
-                <div class="form-group">
-                    @Html.LabelFor(m => m.PasswordResetSecurityCode)
+                @Html.AntiForgeryToken()
+                <div class="form-group col-md-6">
+                    <b> @Html.LabelFor(m => m.PasswordResetSecurityCode)</b>
                     @Html.TextBoxFor(m => m.PasswordResetSecurityCode, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.PasswordResetSecurityCode, null, new { @class = "text-danger" })
                 </div>

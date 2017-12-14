@@ -27,6 +27,10 @@ namespace PaymateMVC.ViewModels
 
         public Guid CustomerGuid { get; set; }
 
+        [Display(Name = "Security Code")]
+        [Required(ErrorMessage = "Please enter the security code")]
+        public string PasswordResetSecurityCode { get; set; }
+
 
         public UserBO Mapping(LoginViewModel loginViewModel)
         {

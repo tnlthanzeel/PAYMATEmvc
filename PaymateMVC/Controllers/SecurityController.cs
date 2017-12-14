@@ -144,9 +144,8 @@ namespace PaymateMVC.Controllers
             if (doesUserExist)
             {
                 var ResetedPassword = RandomStringGenerator.GenerateRandomString();
-
-                await _resetPasswordService.UpdatedResetedPasswordAsync(loginViewModelReset.CustomerEmailAddress, ResetedPassword);
-
+                Session["SecurityCode"] = ResetedPassword;
+                Session["EmailToUpdatepassword"] = loginViewModelReset.CustomerEmailAddress;
 
                 MessageBuilder messageBuilder = new MessageBuilder()
                 {
@@ -158,13 +157,56 @@ namespace PaymateMVC.Controllers
                 await MessageBuilder.SendEmailAsync(messageBuilder);
 
                 ViewBag.EmailToReset = loginViewModelReset.CustomerEmailAddress;
-                return PartialView("_PasswordReset");
+                return RedirectToAction("SecurityCode");
             }
             else
             {
                 this.Flash(Toastr.ERROR, "Error", "Invalid Email Address");
                 return View("ForgotPassword");
             }
+        }
+
+        [HttpGet]
+        public ActionResult SecurityCode()
+        {
+            ViewBag.EmailToReset = Session["EmailToUpdatepassword"].ToString();
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SecurityCode(LoginViewModel loginViewModel)
+        {
+            if (Session["SecurityCode"] != null)
+            {
+                if (loginViewModel.PasswordResetSecurityCode == Session["SecurityCode"].ToString())
+                    return RedirectToAction("ResetPassword");
+                else
+                    this.Flash(Toastr.ERROR, "Error", "Invalid Security Code");
+                return View("SecurityCode");
+            }
+            else
+            {
+                this.Flash(Toastr.ERROR, "Error", "The security code has expired. Please reset the your password to get a new security code ");
+                return View("SecurityCode");
+            }
+        }
+
+
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(RegisterViewModel registerViewModel)
+        {
+            await _resetPasswordService.UpdatedResetedPasswordAsync(Session["EmailToUpdatepassword"].ToString(), registerViewModel.CustomerPassword);
+            Session.RemoveAll();
+            return PartialView("_PasswordUpdated");
         }
     }
 }

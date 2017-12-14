@@ -9,6 +9,9 @@ namespace PaymateMVC.Validations
 {
     public class UserLoginValidator: AbstractValidator<LoginViewModel>
     {
-
+        public UserLoginValidator()
+        {
+            //RuleFor<>
+        }
     }
 }

@@ -724,6 +724,9 @@
     <Content Include="Views\Shared\_Loader.cshtml" />
     <Content Include="Views\Security\ForgotPassword.cshtml" />
     <Content Include="Views\Shared\_PasswordReset.cshtml" />
+    <Content Include="Views\Security\SecurityCode.cshtml" />
+    <Content Include="Views\Security\ResetPassword.cshtml" />
+    <Content Include="Views\Shared\_PasswordUpdated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
