@@ -577,6 +577,13 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\ProfilePics\bagya.jpeg" />
+    <Content Include="Files\ProfilePics\default-profilepic.png" />
+    <Content Include="Files\ProfilePics\fayik.jpeg" />
+    <Content Include="Files\ProfilePics\hubaub.jpeg" />
+    <Content Include="Files\ProfilePics\ifrath.jpeg" />
+    <Content Include="Files\ProfilePics\prabani.PNG" />
+    <Content Include="Files\ProfilePics\tnl.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

@@ -28,7 +28,8 @@ namespace UIServices.CustomerServices
                 .Select(s => new UserBO()
                 {
                     CustomerEmailAddress = s.CustomerEmailAddress,
-                    EmailConfirmed=s.EmailConfirmed
+                    EmailConfirmed=s.EmailConfirmed,
+                    ProfilePicUrl=s.ProfilePicUrl
                 }).FirstOrDefaultAsync();
             return UserBO;
         }

@@ -46,5 +46,7 @@ namespace DataAccess.Models
         public bool EmailConfirmed { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
+
+        public string ProfilePicUrl { get; set; }
     }
 }

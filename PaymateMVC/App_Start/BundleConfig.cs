@@ -129,6 +129,7 @@ namespace PaymateMVC
                        "~/Scripts/AppCommon.js"
                       ));
             #endregion
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

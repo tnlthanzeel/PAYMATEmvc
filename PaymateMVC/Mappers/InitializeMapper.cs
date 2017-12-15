@@ -18,6 +18,7 @@ namespace PaymateMVC.Mappers
                 m.CreateMap<LoginViewModel, UserBO>();
                 m.CreateMap<RegisterViewModel, UserBO>();
                 m.CreateMap<UserBO, Customer>();
+                m.CreateMap<Customer, UserBO>();
             });
         }
     }

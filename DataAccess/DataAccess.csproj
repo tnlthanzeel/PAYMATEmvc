@@ -75,6 +75,18 @@
     <Compile Include="Migrations\201712061730287_customeruid.Designer.cs">
       <DependentUpon>201712061730287_customeruid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712141650563_profilepicurl.cs" />
+    <Compile Include="Migrations\201712141650563_profilepicurl.Designer.cs">
+      <DependentUpon>201712141650563_profilepicurl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712150152284_asad.cs" />
+    <Compile Include="Migrations\201712150152284_asad.Designer.cs">
+      <DependentUpon>201712150152284_asad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712151654285_asada.cs" />
+    <Compile Include="Migrations\201712151654285_asada.Designer.cs">
+      <DependentUpon>201712151654285_asada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Gender.cs" />
@@ -115,6 +127,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712061730287_customeruid.resx">
       <DependentUpon>201712061730287_customeruid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141650563_profilepicurl.resx">
+      <DependentUpon>201712141650563_profilepicurl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712150152284_asad.resx">
+      <DependentUpon>201712150152284_asad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712151654285_asada.resx">
+      <DependentUpon>201712151654285_asada.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

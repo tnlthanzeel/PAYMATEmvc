@@ -79,6 +79,7 @@
     <Compile Include="CustomerServices\LoginService.cs" />
     <Compile Include="CustomerServices\RegisterService.cs" />
     <Compile Include="CustomerServices\ResetPasswordService.cs" />
+    <Compile Include="CustomerServices\UserService.cs" />
     <Compile Include="LookupServices\GenderLookupService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +104,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DashboardSevice\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

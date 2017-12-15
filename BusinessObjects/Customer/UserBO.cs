@@ -33,6 +33,8 @@ namespace BusinessObjects
 
         public DateTime? DateOfBirth { get; set; }
 
+        public string ProfilePicUrl { get; set; }
+
         public string CustomerFullName
         {
             get
