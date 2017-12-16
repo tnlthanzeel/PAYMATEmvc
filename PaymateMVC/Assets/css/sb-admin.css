@@ -167,7 +167,7 @@ body {
             -webkit-flex-direction: column;
             -ms-flex-direction: column;
             flex-direction: column;
-            margin-top: 56px;
+            margin-top: 87px;
         }
 
             #mainNav .navbar-collapse .navbar-sidenav > .nav-item {
@@ -223,7 +223,7 @@ body {
 
 @media (min-width: 992px) {
     #mainNav.fixed-top .navbar-sidenav {
-        height: calc(100vh - 112px);
+        height: calc(96vh - 112px);
     }
 
     #mainNav.fixed-top .sidenav-toggler {

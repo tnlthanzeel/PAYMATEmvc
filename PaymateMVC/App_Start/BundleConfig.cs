@@ -122,14 +122,16 @@ namespace PaymateMVC
 
             bundles.Add(new StyleBundle("~/Content/common").Include(
                 "~/Content/themes/Loader.css",
-                "~/Assets/spinner-overlay.css"
+                "~/Assets/spinner-overlay.css",
+                "~/Assets/css/Profilepic.css"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
-                       "~/Scripts/AppCommon.js"
-                      ));
+                       "~/Scripts/AppCommon.js",
+                       "~/Assets/js/profilepic.js"
+                       ));
             #endregion
-            BundleTable.EnableOptimizations = true;
+            // BundleTable.EnableOptimizations = true;
         }
     }
 }

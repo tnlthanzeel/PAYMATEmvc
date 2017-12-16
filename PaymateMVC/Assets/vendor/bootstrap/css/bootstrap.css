@@ -630,11 +630,13 @@ pre code {
 
 .container-fluid {
   width: 100%;
+  margin-top:25px;
   margin-right: auto;
   margin-left: auto;
   padding-right: 15px;
   padding-left: 15px;
   width: 100%;
+
 }
 
 .row {
@@ -6311,11 +6313,12 @@ a.bg-dark:focus, a.bg-dark:hover {
 }
 
 .fixed-top {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
+    position: fixed;
+    padding-bottom: 0px;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
 
 .fixed-bottom {

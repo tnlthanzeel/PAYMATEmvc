@@ -207,18 +207,20 @@
                         <a class="dropdown-item small" href="#">View all alerts</a>
                     </div>
                 </li>
-
                 <li class="nav-item">
-                    @*<a class="nav-link" data-toggle="modal" data-target="#exampleModal">*@
-                    <img data-toggle="modal" data-target="#exampleModal" style="border-radius:50%;width:50px;height:50px;" src="~/Files/ProfilePics/@ViewBag.profilePicUrl" />
-                    @*</a>*@
+                    <img class="profile-pic" src="~/Files/ProfilePics/@ViewBag.profilePicUrl">
+                    <div class="p-image">
+                       <a href="#"> <i class="fa fa-camera upload-button"></i></a>
+                        @*<input class="file-upload" type="file" accept="image/*" />*@
+                    </div>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                         @(HttpContext.Current.User.Identity.Name)
+                        <i class="fa fa-cog fa-spin fa-fw"></i>
+                        <span class="sr-only"></span>
                     </a>
-
-
                 </li>
                 @*<li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#exampleModal">

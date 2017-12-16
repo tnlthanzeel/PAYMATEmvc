@@ -92,6 +92,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -170,6 +173,12 @@
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -196,8 +205,8 @@
     <Content Include="Assets\blank.html" />
     <Content Include="Assets\cards.html" />
     <Content Include="Assets\charts.html" />
+    <Content Include="Assets\css\Profilepic.css" />
     <Content Include="Assets\css\sb-admin.css" />
-    <Content Include="Assets\css\sb-admin.min.css" />
     <Content Include="Assets\forgot-password.html" />
     <Content Include="Assets\gulpfile.js" />
     <Content Include="Assets\home\.gitignore" />
@@ -269,6 +278,7 @@
     <Content Include="Assets\home\vendor\popper\popper.js" />
     <Content Include="Assets\home\vendor\popper\popper.min.js" />
     <Content Include="Assets\index.html" />
+    <Content Include="Assets\js\profilepic.js" />
     <Content Include="Assets\js\sb-admin-charts.js" />
     <Content Include="Assets\js\sb-admin-charts.min.js" />
     <Content Include="Assets\js\sb-admin-datatables.js" />
@@ -737,6 +747,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\Temp\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

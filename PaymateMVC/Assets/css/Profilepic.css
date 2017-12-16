@@ -1,0 +1,33 @@
+﻿.profile-pic {
+    width: 55px;
+    height: 55px;
+    display: block;
+    border-radius: 50%;
+   
+}
+
+.file-upload {
+    display: none;
+}
+
+
+.p-image {
+    position: relative;
+    top: -20px;
+    right: -45px;
+    color: lightgoldenrodyellow;
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+    .p-image:hover {
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+    }
+
+.upload-button {
+    font-size: 1.2em;
+}
+
+    .upload-button:hover {
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        color: #999;
+    }
