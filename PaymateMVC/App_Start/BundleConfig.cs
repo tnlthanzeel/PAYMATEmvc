@@ -129,7 +129,8 @@ namespace PaymateMVC
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                        "~/Scripts/AppCommon.js",
-                       "~/Assets/js/profilepic.js"
+                       "~/Assets/js/profilepic.js",
+                       "~/Scripts/DashBoard.js"
                        ));
             #endregion
             // BundleTable.EnableOptimizations = true;
