@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using RedWillow.MvcToastrFlash
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -15,6 +16,7 @@
     <link href="~/Assets/home/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    @Html.Partial("_Loader", "page-spinner")
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <a class="navbar-brand" href="#">
@@ -210,7 +212,7 @@
                 <li class="nav-item">
                     <img class="profile-pic" src="~/Files/ProfilePics/@ViewBag.profilePicUrl">
                     <div class="p-image">
-                       <a href="#"> <i class="fa fa-camera upload-button"></i></a>
+                        <a href="#"> <i class="fa fa-camera upload-button" data-toggle="modal" data-target="#profilepicupload"></i></a>
                         @*<input class="file-upload" type="file" accept="image/*" />*@
                     </div>
 
@@ -218,7 +220,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                         @(HttpContext.Current.User.Identity.Name)
-                        <i class="fa fa-cog fa-spin fa-fw"></i>
+                        <i class="fa fa-gears fa-fw"></i>
                         <span class="sr-only"></span>
                     </a>
                 </li>
@@ -264,9 +266,40 @@
             </div>
         </div>
 
+        <!-- profile pic upload modal-->
+        <div class="modal fade" id="profilepicupload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            @using (Html.BeginForm("UpdateProfilePicture", "DashBoard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Upload Profile Picture</h5>
+                            <button class="close pull-left" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <input type="file" name="file" id="file">
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-danger " type="button" data-dismiss="modal" >Cancel</button>
+                            <input type="submit" value="Upload" class="btn btn-success" id="reg-log-button">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
         @Scripts.Render("~/Dashboard/js")
         @Scripts.Render("~/bundles/common")
+        @Scripts.Render("~/bundles/jqueryval")
         @RenderSection("scripts", required: false)
+        @Scripts.Render("~/Bundles/toastr")
+        @Html.ToastrNotifications()
 
     </div>
 </body>

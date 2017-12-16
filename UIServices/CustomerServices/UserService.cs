@@ -25,5 +25,12 @@ namespace UIServices.CustomerServices
             var userDetail = await _paymateDB.Customer.FirstOrDefaultAsync(x => x.CustomerEmailAddress == userEmail);
             return Mapper.Map<UserBO>(userDetail);
         }
+
+        public async Task UpadateUserInfoAsync(UserBO userBO, string userEmail)
+        {
+            var userDetail = await _paymateDB.Customer.FirstOrDefaultAsync(x => x.CustomerEmailAddress == userEmail);
+            userDetail.ProfilePicUrl = userBO.ProfilePicUrl;
+            await _paymateDB.SaveChangesAsync();
+        }
     }
 }

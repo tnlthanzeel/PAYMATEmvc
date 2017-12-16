@@ -123,7 +123,8 @@ namespace PaymateMVC
             bundles.Add(new StyleBundle("~/Content/common").Include(
                 "~/Content/themes/Loader.css",
                 "~/Assets/spinner-overlay.css",
-                "~/Assets/css/Profilepic.css"
+                "~/Assets/css/Profilepic.css",
+                "~/Content/toastr.css"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
