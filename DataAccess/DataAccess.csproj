@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201712151654285_asada.Designer.cs">
       <DependentUpon>201712151654285_asada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712170550459_aa.cs" />
+    <Compile Include="Migrations\201712170550459_aa.Designer.cs">
+      <DependentUpon>201712170550459_aa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Gender.cs" />
@@ -136,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712151654285_asada.resx">
       <DependentUpon>201712151654285_asada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712170550459_aa.resx">
+      <DependentUpon>201712170550459_aa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

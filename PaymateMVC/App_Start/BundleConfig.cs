@@ -125,6 +125,7 @@ namespace PaymateMVC
                 "~/Assets/spinner-overlay.css",
                 "~/Assets/css/Profilepic.css",
                 "~/Content/toastr.css"
+                
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(

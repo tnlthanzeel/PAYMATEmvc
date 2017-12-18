@@ -11,8 +11,10 @@ using BusinessObjects;
 
 namespace PaymateMVC.Controllers
 {
+    [Authorize]
     public class DashBoardController : Controller
     {
+        private readonly string[] _imageFileExtensions = { ".jpg", ".png", ".gif", ".jpeg" };
         private readonly UserService _userSvice;
 
         public DashBoardController(UserService userSvice)
@@ -21,7 +23,7 @@ namespace PaymateMVC.Controllers
         }
 
 
-        [Authorize]
+       
         public async Task<ActionResult> MainMenu()
         {
             var userDetails = await _userSvice.GetUserInfoAsync(User.Identity.Name);
@@ -35,6 +37,9 @@ namespace PaymateMVC.Controllers
         {
             if (file != null)
             {
+                if (!_imageFileExtensions.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase))) { this.Flash(Toastr.ERROR,"Invlaid File", "Please upload an image file"); return RedirectToActionPermanent("MainMenu"); }
+
+                
                 var FileName = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/Files/ProfilePics"), FileName);
                 file.SaveAs(path);

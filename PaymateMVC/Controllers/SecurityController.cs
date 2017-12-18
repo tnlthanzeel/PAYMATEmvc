@@ -99,7 +99,7 @@ namespace PaymateMVC.Controllers
                 {
                     To = UserBO.CustomerEmailAddress,
                     Subject = "PAYmate Confirmation Email",
-                    Body = "Hi " + UserBO.CustomerFullName + ",\nClick on the link below to confirm your email address.\n\n" + "http://paymatelk.azurewebsites.net/Security/Confirmation?id=",
+                    Body = "Hi " + UserBO.CustomerFullName + ",\nClick on the link below to confirm your email address.\n\n" + "http://paymatelk.azurewebsites.net/Security/Confirmation?id=", // "http://localhost:54283/Security/Confirmation?id=",
                     IsNewCustomer = true
                 };
                 await MessageBuilder.SendEmailAsync(messageBuilder);
