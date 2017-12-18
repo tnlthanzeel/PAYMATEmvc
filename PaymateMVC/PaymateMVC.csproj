@@ -196,6 +196,7 @@
     <Content Include="Assets\blank.html" />
     <Content Include="Assets\cards.html" />
     <Content Include="Assets\charts.html" />
+    <Content Include="Assets\css\croppie.css" />
     <Content Include="Assets\css\Profilepic.css" />
     <Content Include="Assets\css\sb-admin.css" />
     <Content Include="Assets\forgot-password.html" />
