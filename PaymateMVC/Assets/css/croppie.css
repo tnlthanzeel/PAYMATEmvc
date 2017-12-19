@@ -10,7 +10,7 @@
     text-align: center;
 }
 
-button, .button {
+/*button,*/ .buttonn {
     position: relative;
     background-color: purple;
     color: white;
@@ -27,16 +27,16 @@ button, .button {
     text-transform: uppercase;
 }
 
-    button.actionCancel, .button.actionCancel {
+    /*button*/.actionCancel, .buttonn.actionCancel {
         background-color: dodgerblue;
         color: dodgerblue;
     }
 
-    button.actionDone, .button.actionDone {
+    /*button*/.actionDone, .buttonn.actionDone {
         display: none;
     }
 
-    button input[type="file"], .button input[type="file"] {
+    /*button*/ input[type="file"], .buttonn input[type="file"] {
         position: absolute;
         top: 0;
         left: 0;
