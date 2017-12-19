@@ -132,6 +132,7 @@ namespace PaymateMVC
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                        "~/Scripts/AppCommon.js",
                        "~/Scripts/DashBoard.js",
+                       "~/Assets/js/exif.js",
                        "~/Assets/js/profilepic.js"
                        ));
             #endregion

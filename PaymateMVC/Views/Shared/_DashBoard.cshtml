@@ -211,6 +211,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <input type="hidden" value="@ViewBag.profilePicUrl" id="profilrPicUrl" />
                     <img class="profile-pic" src="~/Files/ProfilePics/@ViewBag.profilePicUrl">
                     <div class="p-image">
                         <a href="#" style="color:lightgoldenrodyellow;"> <i class="fa fa-camera upload-button" data-toggle="modal" data-target="#profilepicupload"></i></a>
@@ -281,7 +282,7 @@
                         <div class="modal-body">
                             <div id="main-cropper"></div>
                             <center>
-                                <a class="buttonn actionUpload btn btn-primary">
+                                <a class="buttonn actionUpload btn btn-primary" id="selectImage">
                                     <input type="file" name="file" id="file">
                                     <span>Select picture</span>
                                 </a>

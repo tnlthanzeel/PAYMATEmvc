@@ -270,6 +270,7 @@
     <Content Include="Assets\home\vendor\popper\popper.js" />
     <Content Include="Assets\home\vendor\popper\popper.min.js" />
     <Content Include="Assets\index.html" />
+    <Content Include="Assets\js\exif.js" />
     <Content Include="Assets\js\profilepic.js" />
     <Content Include="Assets\js\sb-admin-charts.js" />
     <Content Include="Assets\js\sb-admin-charts.min.js" />
