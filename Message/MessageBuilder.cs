@@ -49,7 +49,7 @@ namespace Message
 
         public static void SendEmails(MessageBuilder messageBuilder)
         {
-
+            //code for sending emaails to multiple customers
         }
 
         private static string EncryptEmail(string EmailTo)

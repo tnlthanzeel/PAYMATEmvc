@@ -37,7 +37,8 @@ namespace PaymateMVC
                        "~/Assets/home/vendor/bootstrap/css/bootstrap.min.css",
                       "~/Assets/home/vendor/font-awesome/css/font-awesome.min.css",
                       "~/Assets/home/css/grayscale.min.css",
-                       "~/Assets/spinner-overlay.css"
+                       "~/Assets/spinner-overlay.css",
+                       "~/Assets/css/ExternalLoginButton.css"
                       ));
 
             #endregion

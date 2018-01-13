@@ -10,10 +10,11 @@
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
     <link href="~/Assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <title>PAYmate</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/paymate.ico" />
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/common")
     @Scripts.Render("~/bundles/modernizr")
-    
+
 </head>
 <body id="page-top">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -37,6 +38,11 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#" class="loginBtn loginBtn--google">
+                            Login with Google
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -48,6 +54,6 @@
     @Scripts.Render("~/bundles/common")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    
+
 </body>
 </html>
