@@ -100,6 +100,7 @@
     <Compile Include="Models\Gender.cs" />
     <Compile Include="PaymateDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -16,41 +16,37 @@ using System.Threading.Tasks;
 
 namespace UIServices.CustomerServices
 {
-    public class RegisterService
+    public class RegisterService : RepositoryBase
     {
-        private readonly PaymateDB _paymateDB;
-
-        public RegisterService(PaymateDB paymateDB)
-        {
-            _paymateDB = paymateDB;
-        }
-
+        public RegisterService(PaymateDB paymateDB) : base(paymateDB) { }
         public async Task RegisterCustomerAsync(UserBO userBO)
         {
-            var customer = Mapper.Map<Customer>(userBO);
-            _paymateDB.Customer.Add(customer);
-            await _paymateDB.SaveChangesAsync();
+            using (var context = CreateContext())
+            {
+                var customer = Mapper.Map<Customer>(userBO);
+                context.Customer.Add(customer);
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task ConfirmEmailAsync(string id)
         {
-            try
+            using (var context = CreateContext())
             {
                 var DecryptedEmail = MessageBuilder.Decrypt(id);
-                var EmailConfirmed = _paymateDB.Customer.Single(w => w.CustomerEmailAddress == DecryptedEmail && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == false);
+                var EmailConfirmed = context.Customer.Single(w => w.CustomerEmailAddress == DecryptedEmail && w.Status == (int)CustomerStatusEnum.Active && w.EmailConfirmed == false);
                 EmailConfirmed.EmailConfirmed = true;
-                await _paymateDB.SaveChangesAsync();
-            }
-            catch
-            {
-
+                await context.SaveChangesAsync();
             }
         }
 
         public async Task<bool> GetUserEmailAsync(string NewUserEmailAddress)
         {
-            var userEamailExist = await _paymateDB.Customer.AsNoTracking().AnyAsync(w => w.CustomerEmailAddress == NewUserEmailAddress);
-            return userEamailExist;
+            using (var context = CreateContext())
+            {
+                var userEamailExist = await context.Customer.AsNoTracking().AnyAsync(w => w.CustomerEmailAddress == NewUserEmailAddress);
+                return userEamailExist;
+            }
         }
     }
 }

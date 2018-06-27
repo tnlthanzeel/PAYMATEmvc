@@ -15,35 +15,34 @@ namespace PaymateMVC.Controllers
     public class DashBoardController : Controller
     {
         private readonly string[] _imageFileExtensions = { ".jpg", ".png", ".gif", ".jpeg" };
-        private readonly UserService _userSvice;
+        private readonly UserService _userService;
 
         public DashBoardController(UserService userSvice)
         {
-            _userSvice = userSvice;
+            _userService = userSvice;
         }
 
 
-       
+
         public async Task<ActionResult> MainMenu()
         {
-            var userDetails = await _userSvice.GetUserInfoAsync(User.Identity.Name);
-            ViewBag.profilePicUrl = userDetails.ProfilePicUrl != null ? userDetails.ProfilePicUrl : "default-profilepic.png";
+            var userDetails = await _userService.GetUserInfoAsync(User.Identity.Name);
+            ViewBag.profilePicUrl = userDetails.ProfilePicUrl ?? "default-profilepic.png";
             return View();
         }
-
 
         [HttpPost]
         public async Task<ActionResult> UpdateProfilePicture(HttpPostedFileBase file)
         {
             if (file != null)
             {
-                if (!_imageFileExtensions.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase))) { this.Flash(Toastr.ERROR,"Invlaid File", "Please upload an image file"); return RedirectToActionPermanent("MainMenu"); }
+                if (!_imageFileExtensions.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase))) { this.Flash(Toastr.ERROR, "Invlaid File", "Please upload an image file"); return RedirectToActionPermanent("MainMenu"); }
 
-                
+
                 var FileName = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/Files/ProfilePics"), FileName);
                 file.SaveAs(path);
-                await _userSvice.UpadateUserInfoAsync(new UserBO { ProfilePicUrl = FileName }, User.Identity.Name);
+                await _userService.UpadateUserInfoAsync(new UserBO { ProfilePicUrl = FileName }, User.Identity.Name);
                 ViewBag.profilePicUrl = FileName;
                 this.Flash(Toastr.SUCCESS, "Upload Complete", "Your profile picture has been uploaded successfully");
             }

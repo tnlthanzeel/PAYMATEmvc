@@ -24,14 +24,12 @@ namespace PaymateMVC.Controllers
         private readonly LoginService _loginService;
         private readonly GenderLookupService _genderLookupService;
         private readonly RegisterService _registerService;
-        private readonly ResetPasswordService _resetPasswordService;
 
-        public SecurityController(LoginService loginService, GenderLookupService genderLookupService, RegisterService registerService, ResetPasswordService resetPasswordService)
+        public SecurityController(LoginService loginService, GenderLookupService genderLookupService, RegisterService registerService)
         {
             _loginService = loginService;
             _registerService = registerService;
             _genderLookupService = genderLookupService;
-            _resetPasswordService = resetPasswordService;
         }
 
         [HttpGet]
@@ -178,6 +176,7 @@ namespace PaymateMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SecurityCode(LoginViewModel loginViewModel)
         {
+
             if (Session["SecurityCode"] != null)
             {
                 if (loginViewModel.PasswordResetSecurityCode == Session["SecurityCode"].ToString())
@@ -205,7 +204,7 @@ namespace PaymateMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(RegisterViewModel registerViewModel)
         {
-            await _resetPasswordService.UpdatedResetedPasswordAsync(Session["EmailToUpdatepassword"].ToString(), registerViewModel.CustomerPassword);
+            await _loginService.UpdatedResetedPasswordAsync(Session["EmailToUpdatepassword"].ToString(), registerViewModel.CustomerPassword);
             Session.RemoveAll();
             return PartialView("_PasswordUpdated");
         }
