@@ -75,13 +75,9 @@ namespace PaymateMVC.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Register()
+        public ActionResult Register()
         {
-            var registerViewModel = new RegisterViewModel()
-            {
-                Gender = await _genderLookupService.GetGenderAsync()
-            };
-            return View(registerViewModel);
+            return View(new RegisterViewModel());
         }
 
         [HttpPost]
@@ -108,7 +104,6 @@ namespace PaymateMVC.Controllers
             }
             catch
             {
-                registerViewModel.Gender = await _genderLookupService.GetGenderAsync();
                 this.Flash(Toastr.ERROR, "Error", "Oops!, something went wrong while processing your request");
                 return View(registerViewModel);
             }

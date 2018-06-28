@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Customer;
+using Common.Enumarations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace BusinessObjects
 
         public string CustomerEmailAddress { get; set; }
 
-        public int GenderID { get; set; }
+        public GenderEnum Gender { get; set; }
 
         public int Status { get; set; }
 

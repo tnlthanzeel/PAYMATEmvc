@@ -47,57 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201710210840143_addedstatus.cs" />
-    <Compile Include="Migrations\201710210840143_addedstatus.Designer.cs">
-      <DependentUpon>201710210840143_addedstatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710210849224_cardnumbernotnullabale.cs" />
-    <Compile Include="Migrations\201710210849224_cardnumbernotnullabale.Designer.cs">
-      <DependentUpon>201710210849224_cardnumbernotnullabale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710280717478_confirm_email_property_added.cs" />
-    <Compile Include="Migrations\201710280717478_confirm_email_property_added.Designer.cs">
-      <DependentUpon>201710280717478_confirm_email_property_added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711060144525_dateofbirth_added.cs" />
-    <Compile Include="Migrations\201711060144525_dateofbirth_added.Designer.cs">
-      <DependentUpon>201711060144525_dateofbirth_added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711171753345_addedcolumnakmal.cs" />
-    <Compile Include="Migrations\201711171753345_addedcolumnakmal.Designer.cs">
-      <DependentUpon>201711171753345_addedcolumnakmal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711171756027_deletedakmal.cs" />
-    <Compile Include="Migrations\201711171756027_deletedakmal.Designer.cs">
-      <DependentUpon>201711171756027_deletedakmal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712061730287_customeruid.cs" />
-    <Compile Include="Migrations\201712061730287_customeruid.Designer.cs">
-      <DependentUpon>201712061730287_customeruid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712141650563_profilepicurl.cs" />
-    <Compile Include="Migrations\201712141650563_profilepicurl.Designer.cs">
-      <DependentUpon>201712141650563_profilepicurl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712150152284_asad.cs" />
-    <Compile Include="Migrations\201712150152284_asad.Designer.cs">
-      <DependentUpon>201712150152284_asad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712151654285_asada.cs" />
-    <Compile Include="Migrations\201712151654285_asada.Designer.cs">
-      <DependentUpon>201712151654285_asada.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712170550459_aa.cs" />
-    <Compile Include="Migrations\201712170550459_aa.Designer.cs">
-      <DependentUpon>201712170550459_aa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801081335322_s.cs" />
-    <Compile Include="Migrations\201801081335322_s.Designer.cs">
-      <DependentUpon>201801081335322_s.cs</DependentUpon>
+    <Compile Include="Migrations\201806281611007_gender moved to enum.cs" />
+    <Compile Include="Migrations\201806281611007_gender moved to enum.Designer.cs">
+      <DependentUpon>201806281611007_gender moved to enum.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\Gender.cs" />
     <Compile Include="PaymateDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
@@ -116,41 +71,14 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710210840143_addedstatus.resx">
-      <DependentUpon>201710210840143_addedstatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710210849224_cardnumbernotnullabale.resx">
-      <DependentUpon>201710210849224_cardnumbernotnullabale.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710280717478_confirm_email_property_added.resx">
-      <DependentUpon>201710280717478_confirm_email_property_added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711060144525_dateofbirth_added.resx">
-      <DependentUpon>201711060144525_dateofbirth_added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711171753345_addedcolumnakmal.resx">
-      <DependentUpon>201711171753345_addedcolumnakmal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711171756027_deletedakmal.resx">
-      <DependentUpon>201711171756027_deletedakmal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712061730287_customeruid.resx">
-      <DependentUpon>201712061730287_customeruid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712141650563_profilepicurl.resx">
-      <DependentUpon>201712141650563_profilepicurl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712150152284_asad.resx">
-      <DependentUpon>201712150152284_asad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712151654285_asada.resx">
-      <DependentUpon>201712151654285_asada.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712170550459_aa.resx">
-      <DependentUpon>201712170550459_aa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801081335322_s.resx">
-      <DependentUpon>201801081335322_s.cs</DependentUpon>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{355A6BBF-059D-4DE9-9E81-3777EA53525B}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806281611007_gender moved to enum.resx">
+      <DependentUpon>201806281611007_gender moved to enum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

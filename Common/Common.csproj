@@ -47,6 +47,7 @@
     <Compile Include="Enumarations\CustomerStatusEnum.cs" />
     <Compile Include="Enumarations\EnumDescription.cs" />
     <Compile Include="Enumarations\ErrorMessageEnum.cs" />
+    <Compile Include="Enumarations\GenderEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomStringGenerator.cs" />
   </ItemGroup>

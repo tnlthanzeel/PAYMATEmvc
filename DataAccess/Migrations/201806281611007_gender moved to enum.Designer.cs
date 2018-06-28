@@ -7,13 +7,13 @@ namespace DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class customeruid : IMigrationMetadata
+    public sealed partial class gendermovedtoenum : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(customeruid));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(gendermovedtoenum));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712061730287_customeruid"; }
+            get { return "201806281611007_gender moved to enum"; }
         }
         
         string IMigrationMetadata.Source

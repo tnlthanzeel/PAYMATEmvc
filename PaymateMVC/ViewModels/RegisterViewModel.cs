@@ -45,12 +45,9 @@ namespace PaymateMVC.ViewModels
         [Remote("DoesUserEmailExist", "Security", HttpMethod = "POST", ErrorMessage = "This Email Address is already taken.")]
         public string CustomerEmailAddress { get; set; }
 
-        public IEnumerable<Gender> Gender { get; set; }
-
         [Display(Name = "Gender")]
         [Required(ErrorMessage = "Please Select Your Gender")]
-        public int GenderID { get; set; }
-
+        public GenderEnum Gender{ get; set; }
 
         [Display(Name = "Date Of Birth")]
         [Required(ErrorMessage = "Select your date of birth")]

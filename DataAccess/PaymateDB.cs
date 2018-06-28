@@ -13,9 +13,7 @@ namespace DataAccess
 
     {
         public PaymateDB() : base("paymatecontext") { }
-       
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<Gender> Gender { get; set; }
 
+        public DbSet<Customer> Customer { get; set; }
     }
 }

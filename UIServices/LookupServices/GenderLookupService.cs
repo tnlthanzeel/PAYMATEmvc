@@ -19,13 +19,7 @@ namespace UIServices.LookupServices
         }
 
 
-        public async Task<IEnumerable<Gender>> GetGenderAsync()
-        {
-
-            var Genders =await _GenderLookup.Gender.AsNoTracking().ToListAsync();
-            return Genders;
-
-        }
+       
 
 
     }

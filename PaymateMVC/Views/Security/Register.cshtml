@@ -25,10 +25,15 @@
                             @Html.TextBoxFor(m => m.CustomerLastName, null, new { @class = "form-control", placeholder = "Jalaldeen" })
                             @Html.ValidationMessageFor(m => m.CustomerLastName, null, new { @class = "text-danger" })
                         </div>
+                        @*<div class="col-md-6">
+                                @Html.LabelFor(m => m.GenderID)
+                                @Html.DropDownListFor(m => m.GenderID, new SelectList(Model.Gender, "GenderID", "GenderType"), "Select a gender", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.GenderID, null, new { @class = "text-danger" })
+                            </div>*@
                         <div class="col-md-6">
-                            @Html.LabelFor(m => m.GenderID)
-                            @Html.DropDownListFor(m => m.GenderID, new SelectList(Model.Gender, "GenderID", "GenderType"), "Select a gender", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.GenderID, null, new { @class = "text-danger" })
+                            @Html.LabelFor(m => m.Gender)
+                            @Html.EnumDropDownListFor(x => x.Gender, "Select a gender", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Gender, null, new { @class = "text-danger" })
                         </div>
                         <div>
                             @Html.LabelFor(m => m.DateOfBirth)

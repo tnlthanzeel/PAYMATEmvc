@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Enumarations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,9 +33,7 @@ namespace DataAccess.Models
         public string CustomerEmailAddress { get; set; }
 
         [Required]
-        public int GenderID { get; set; }
-
-        public Gender Gender { get; set; }
+        public GenderEnum Gender { get; set; }
 
         [Required]
         public DateTime CreatedOn { get; set; }
